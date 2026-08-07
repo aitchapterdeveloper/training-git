@@ -6,5 +6,13 @@ namespace GitTrainingDemo.Services
         {
             return price;
         }
+       
+    }
+    public class SapaService
+    {
+         public string SapaNama(name string)
+        {
+            return "selamat datang" + name;
+        }
     }
 }
