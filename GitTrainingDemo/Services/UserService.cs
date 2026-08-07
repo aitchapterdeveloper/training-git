@@ -6,11 +6,12 @@ namespace GitTrainingDemo.Services
         {
             if (user == "admin" && pass == "2424") //change admin default password to 2424
             {
-                return "Login berhasil";
+                return "Login Success !!!";
             }
             else if (user == "admin")
             {
-                return "Password salah"; //test commit
+                return "Password salah"; // Test Commit
+
             }
             else
             {
