@@ -18,6 +18,7 @@ namespace GitTrainingDemo.Services
             {
                 return "User tidak ditemukan silahkan login ulang";
             }
+            return "Login Berhasil";
         }
 
         public string LoginTest(string user, string pass)
