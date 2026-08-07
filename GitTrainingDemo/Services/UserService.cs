@@ -8,17 +8,20 @@ namespace GitTrainingDemo.Services
             {
                 return "Login Success !!!";
             }
+            else if (user == "admin" && pass.Length < 4)
+            {
+                return "Password terlalu pendek";
+            }
             else if (user == "admin") // testA
             {
                 return "Password salah"; // Test Commit
 
             }
-            // Bang Dave baik
             else
             {
                 return "User tidak ditemukan silahkan login ulang";
             }
-            return "Login Berhasil";
+            
         }
 
         public string LoginTest(string user, string pass)
@@ -36,6 +39,15 @@ namespace GitTrainingDemo.Services
                 return "User tidak ditemukan silahkan login ulang ya";
             }
         }
+
+        //public string GetGreeting(string firstName, string lastName)
+        //{
+        //    return "Halo, " + firstName + lastName " !";
+        //}
+
+        //string message = GetGreeting("Bil", "Hakki");
+
+
     }
 }
 
