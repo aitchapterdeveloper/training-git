@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+
 namespace GitTrainingDemo.Services
 {
     public class UserService
@@ -8,17 +12,18 @@ namespace GitTrainingDemo.Services
             {
                 return "Login Success !!!";
             }
-            else if (user == "admin") // testA
+            else if(pass.Length < 4)
             {
-                return "Password salah"; // Test Commit
-
+                return "Password kurang dari 4 karakter";
             }
-            // Bang Dave baik
+            else if (user == "admin")
+            {
+                return "Password salah";
+            }
             else
             {
                 return "User tidak ditemukan silahkan login ulang";
             }
-            return "Login Berhasil";
         }
 
         public string LoginTest(string user, string pass)
@@ -36,31 +41,138 @@ namespace GitTrainingDemo.Services
                 return "User tidak ditemukan silahkan login ulang ya";
             }
         }
+
+        public string GetGreeting(string firstName, string lastName)
+        {
+            return "Halo, " + firstName + " " + lastName + "!";
+        }
+
+        public void SendGreeting(string firstName, string lastName)
+        {
+            Console.WriteLine("Halo, " + firstName + " " +  lastName + "!");
+        }
+
+        public void ForLoopLoncat1(int n)
+        {
+            for (int i = 0; i < n; i += 2)
+            {
+                Console.WriteLine(i + 1);
+            }
+        }
+
+        public void ForEachLoopNama(List<string> listNama)
+        {
+            foreach (string nama in listNama)
+            {
+                Console.WriteLine("Halo " + nama + "!");
+            }
+        }
+
+        public void ListLatihan()
+        {
+            List<string> mataKuliah = new List<string> ();
+            mataKuliah.Add("IPA");
+            mataKuliah.Add("Matematika");
+            mataKuliah.Add("Geologi");
+            mataKuliah.Add("IPS");
+
+            Console.WriteLine("Mata kuliah pertama : " + mataKuliah[0]);
+            Console.WriteLine("Jumlah mata kuliah saat ini : " + mataKuliah.Count);
+
+            mataKuliah.Remove("IPS");
+            Console.WriteLine("Jumlah mata kuliah saat ini : " + mataKuliah.Count);
+
+            Console.WriteLine("Apakah ada mata kuliah IPA : " + mataKuliah.Contains("IPA"));
+            Console.WriteLine("Apakah ada mata kuliah IPS : " + mataKuliah.Contains("IPS"));
+
+            foreach(string matkul in mataKuliah)
+            {
+                Console.WriteLine("Mata kuliah : " + matkul);
+            }
+        }
+
+        public void LatihanDictionary()
+        {
+            Dictionary<string, string> barangProduk = new Dictionary<string, string> ();
+
+            barangProduk.Add("ITM-001", "Pisang");
+            barangProduk.Add("ITM-002", "Pisau");
+            barangProduk.Add("ITM-003", "Apel");
+            barangProduk.Add("ITM-004", "Susu");
+            barangProduk.Add("ITM-005", "Sereal");
+            barangProduk.Add("ITM-006", "Sosis");
+            barangProduk.Add("ITM-007", "Kentang");
+            barangProduk.Add("ITM-008", "Pir");
+            barangProduk.Add("ITM-009", "Kopi");
+            barangProduk.Add("ITM-010", "Laptop");
+            barangProduk.Add("ITM-011", "Komputer");
+
+            Console.WriteLine(barangProduk["ITM-001"]);
+
+            Console.WriteLine(barangProduk.ContainsKey("ITM-010"));
+
+            if (barangProduk.ContainsKey("ITM-010"))
+            {
+                Console.WriteLine("Barang ditemukan");
+            }
+
+            foreach(string namaBarang in barangProduk.Values)
+            {
+                Console.WriteLine("Nama Barang : " + namaBarang);
+            }
+        }
+
+        public void LatihanHashSet()
+        {
+            HashSet<string> tags = new HashSet<string>();
+            tags.Add("C#");
+            tags.Add("OOP");
+            tags.Add("C#"); // Diabaikan — duplikat!
+            Console.WriteLine(tags.Count); // 2, bukan 3
+
+            // Set operations
+            HashSet<string> setA = new HashSet<string> { "A", "B", "C" };
+            HashSet<string> setB = new HashSet<string> { "B", "C", "D" };
+            //setA.IntersectWith(setB);
+            //// setA sekarang: {"B", "C"}
+            //setA.UnionWith(setB);
+            //setA.ExceptWith(setb);
+        }
+    }
+
+    public class Product
+    {
+        public string Name { get; set; }
+        public int Price { get; set; }
+        //private string _description;
+
+        //public string Description { 
+        //    get { return _description; } 
+        //    set
+        //    {
+        //        _description = value;
+        //    }
+        //}
+
+        public Product(string name, int price, string description)
+        {
+            Name = name;
+            Price = price;
+            //Description = description;
+        }
+    }
+
+    public class BankAccount
+    {
+        private double _balance;
+
+        public double Balance
+        {
+            get { return _balance; }
+            set
+            {
+                if(value>0) _balance = value;
+            }
+        }
     }
 }
-
-
-/*
-- PRAKTEK 1 (LOCAL REPO)
-git add
-git commit -m ""
-git log -- oneline
-git remote -v
-
-- PRAKTEK 2 (BRANCHING)
-git branch
-git branch <nama_branch>
-git checkout <nama_branch>
-git checkout -b <nama_branch>
-
-- PRAKTEK 3 (MERGE)
-berada di branch tujuan
-git merge <nama_branch_asal>
-
-- PRAKTEK 4 (MERGE CONFLICT)
-git status (ditandai both modified)
-buka edit file
-hapus marker di dalam file (<<<<, =====, >>>>)
-git add
-gir commit
- */
