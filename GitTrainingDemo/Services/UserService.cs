@@ -18,5 +18,21 @@ namespace GitTrainingDemo.Services
             }
             return "Login Berhasil";
         }
+
+        public string LoginTest(string user, string pass)
+        {
+            if (user == "adminxx" && pass == "123456")
+            {
+                return "Login berhasil ya";
+            }
+            else if (user == "admin")
+            {
+                return "Password salah ya"; //test commit
+            }
+            else
+            {
+                return "User tidak ditemukan silahkan login ulang ya";
+            }
+        }
     }
 }
