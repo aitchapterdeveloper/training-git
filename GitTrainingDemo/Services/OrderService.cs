@@ -4,7 +4,7 @@ namespace GitTrainingDemo.Services
     {
         public decimal CalculateTotal(decimal price)
         {
-            double discount = 0.9;
+            double discount = 0.15;
             return price*(1-discount);
         }
        
