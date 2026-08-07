@@ -1,4 +1,4 @@
-namespace GitTrainingDemo.Services //test commit
+namespace GitTrainingDemo.Services //test commit O.o
 {
     public class UserService
     {
