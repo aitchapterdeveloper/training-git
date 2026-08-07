@@ -3,4 +3,7 @@
 ################################################################################
 
 /.vs
-/GitTrainingDemo/obj
+*.log
+obj/
+bin/
+/GitTrainingDemo/appsettings.Development.json
