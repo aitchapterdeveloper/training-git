@@ -26,12 +26,13 @@ namespace GitTrainingDemo.Services
             }
             else if (user == "admin")
             {
-                return "Password salah ya"; //test commit
+                return "Password salah"; //test pelatihan
             }
             else
             {
                 return "User tidak ditemukan silahkan login ulang ya";
             }
+
         }
     }
 }
