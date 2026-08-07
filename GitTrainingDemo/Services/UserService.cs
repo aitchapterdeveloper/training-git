@@ -10,7 +10,7 @@ namespace GitTrainingDemo.Services
             }
             else if (user == "admin")
             {
-                return "Password salah";
+                return "Password salah"; //test pelatihan
             }
             else
             {
