@@ -6,4 +6,3 @@
 *.log
 obj/
 bin/
-/GitTrainingDemo/appsettings.Development.json
