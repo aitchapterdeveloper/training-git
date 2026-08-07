@@ -5,7 +5,7 @@ namespace GitTrainingDemo.Models
     public class Product
     {
         public string Name { get; set; }
-        private int _price;
+        protected decimal _price;
         private DateTime _createdAt;
 
         public Product(string name)
@@ -14,17 +14,42 @@ namespace GitTrainingDemo.Models
             _createdAt = DateTime.Now;
         }
 
-        public int Price
+        public decimal Price
         {
             get {  return _price; }
             set {
-                if (value > 0)
-                    _price = value;
+                SetPrice(value);
             }
+        }
+
+        protected void SetPrice (decimal value)
+        {
+            if (value > 0)
+                _price = value;
         }
 
         public DateTime CreatedAt {
             get { return _createdAt; }
+        }
+
+        public virtual void GetDescription ()
+        {
+            Console.WriteLine("A generic product");
+        }
+    }
+
+    public class PotatoChips : Product
+    {
+        public string Flavor { get; set; }
+
+        public PotatoChips(string name, string flavor):base(name) 
+        {   
+            Flavor = flavor;
+        }
+
+        public override void GetDescription()
+        {
+            Console.WriteLine("Potato chips");
         }
     }
 }

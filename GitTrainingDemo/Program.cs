@@ -60,3 +60,33 @@ product.Price = 10420;
 Console.WriteLine("Produk: " + product.Name + ", Harga: " + product.Price);
 
 Console.WriteLine(product.CreatedAt);
+
+PotatoChips potatoChips = new PotatoChips("Lays", "Seaweed");
+
+Console.WriteLine(potatoChips.Name + " " + potatoChips.Flavor);
+
+Calculator calc = new Calculator();
+calc.Add(1, 2); // int version
+calc.Add(1.5, 2.5); // double version
+calc.Add(1, 2, 3); // 3 param version
+double tripleDouble = calc.Add(1.1, 2.2, 3.3); // 3 double param version
+int quadruple = calc.Add(1, 2, 3, 4); // 4 param version
+
+Console.WriteLine(tripleDouble + " " + quadruple);
+
+List<Product> products = new List<Product>
+{
+    new Product("Toothbrush"),
+    new PotatoChips("Chitato", "Barbeque")
+};
+
+foreach (Product p in products) 
+{
+    Console.Write(p.Name + ": ");
+    p.GetDescription();
+}
+
+Triangle triangle = new Triangle();
+triangle.Base = 5;
+triangle.Height = 12;
+Console.WriteLine("TRIANGLE: " + triangle.CalculateArea());
