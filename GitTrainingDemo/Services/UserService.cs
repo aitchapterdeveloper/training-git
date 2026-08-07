@@ -6,11 +6,11 @@ namespace GitTrainingDemo.Services
         {
             if (user == "admin" && pass == "1234")
             {
-                return "Login berhasil";
+                return "Login berhasil"; //test1
             }
             else if (user == "admin")
             {
-                return "Password salah";
+                return "Password salah"; //test commit
             }
             else
             {
