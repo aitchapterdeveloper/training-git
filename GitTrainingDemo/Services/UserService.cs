@@ -1,21 +1,24 @@
-namespace GitTrainingDemo.Services //test commit
+namespace GitTrainingDemo.Services
 {
     public class UserService
     {
         public string Login(string user, string pass)
         {
-            if (user == "admin" && pass == "1234")
+            if (user == "admin" && pass == "2424") //change admin default password to 2424
             {
-                return "Login berhasil";
+                return "Login Success !!!";
             }
-            else if (user == "admin")
+            else if (user == "admin") // testA
             {
-                return "Password salah"; //test commit
+                return "Password salah"; // Test Commit
+
             }
+            
             else
             {
-                return "User tidak ditemukan silahkan login ulang";
+                return "User tidak ditemukan silahkan login ulang kembali okayyy";
             }
+            return "Login Berhasil";
         }
 
         public string LoginTest(string user, string pass)
@@ -26,7 +29,7 @@ namespace GitTrainingDemo.Services //test commit
             }
             else if (user == "admin")
             {
-                return "Password salah ya"; //test commit
+                return "!!!!!!!Password-----salah----------ya!!!!!!!!!!!"; //test commit
             }
             else
             {
@@ -35,3 +38,4 @@ namespace GitTrainingDemo.Services //test commit
         }
     }
 }
+
