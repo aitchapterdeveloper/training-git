@@ -1,36 +1,31 @@
+using System;
+using System.Collections.Generic;
+
 namespace GitTrainingDemo.Services
 {
     public class UserService
     {
-        public string Login(string user, string pass)
+        public string Login(string user, string password)
         {
-            if (user == "admin" && pass == "1234")
+            if (user == "admin" && password == "admin")
             {
-                return "Login berhasil";
+                return "Login successful!";
             }
-            else if (user == "admin")
+            else if (password.Length < 4)
             {
-                return "Password salah"; //test commit
+                return "Password too short!";
             }
             else
             {
-                return "User tidak ditemukan silahkan login ulang";
+                return "Login failed!";
             }
         }
 
-        public string LoginTest(string user, string pass)
+        public void GetCities(List<string> cities)
         {
-            if (user == "adminxx" && pass == "123456")
+            foreach (string city in cities)
             {
-                return "Login berhasil ya";
-            }
-            else if (user == "admin")
-            {
-                return "Password salah ya"; //test commit
-            }
-            else
-            {
-                return "User tidak ditemukan silahkan login ulang ya";
+                Console.WriteLine(city);
             }
         }
     }
