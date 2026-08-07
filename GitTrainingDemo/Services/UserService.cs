@@ -16,7 +16,7 @@ namespace GitTrainingDemo.Services
             {
                 return "User tidak ditemukan silahkan login ulang";
             }
-            return "";
+            return "Login Berhasil";
         }
     }
 }
