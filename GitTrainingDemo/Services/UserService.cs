@@ -6,7 +6,7 @@ namespace GitTrainingDemo.Services
         {
             if (user == "admin" && pass == "1234")
             {
-                return "Login berhasil";
+                return "Login berhasil"; //yess
             }
             else if (user == "admin")
             {
