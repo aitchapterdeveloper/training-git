@@ -6,16 +6,23 @@ namespace GitTrainingDemo.Services
         {
             if (user == "user" && pass == "1234")
             {
+<<<<<<< HEAD
                 return "Login berhasil"; 
+=======
+                return "Login Success !!!";
+>>>>>>> a7d6ea0372e2588cca4bcdce5082a0f43d0649da
             }
             else if (user == "admin") // testA
             {
-                return "Password salah"; //test commit
+                return "Password salah"; // Test Commit
+
             }
+            // Bang Dave baik
             else
             {
                 return "User tidak ditemukan silahkan login ulang";
             }
+            return "Login Berhasil";
         }
 
         public string LoginTest(string user, string pass)
@@ -26,7 +33,11 @@ namespace GitTrainingDemo.Services
             }
             else if (user == "admin")
             {
+<<<<<<< HEAD
                 return "Password salah"; //test pelatihan
+=======
+                return "!!!!!!!Password-----salah----------ya!!!!!!!!!!!"; //test commit
+>>>>>>> a7d6ea0372e2588cca4bcdce5082a0f43d0649da
             }
             else
             {
@@ -36,3 +47,29 @@ namespace GitTrainingDemo.Services
         }
     }
 }
+
+
+/*
+- PRAKTEK 1 (LOCAL REPO)
+git add
+git commit -m ""
+git log -- oneline
+git remote -v
+
+- PRAKTEK 2 (BRANCHING)
+git branch
+git branch <nama_branch>
+git checkout <nama_branch>
+git checkout -b <nama_branch>
+
+- PRAKTEK 3 (MERGE)
+berada di branch tujuan
+git merge <nama_branch_asal>
+
+- PRAKTEK 4 (MERGE CONFLICT)
+git status (ditandai both modified)
+buka edit file
+hapus marker di dalam file (<<<<, =====, >>>>)
+git add
+gir commit
+ */
