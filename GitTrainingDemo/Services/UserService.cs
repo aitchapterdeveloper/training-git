@@ -8,7 +8,7 @@ namespace GitTrainingDemo.Services
             {
                 return "Login Success !!!";
             }
-            else if (user == "admin")
+            else if (user == "admin") // testA
             {
                 return "Password salah"; // Test Commit
 
