@@ -4,7 +4,17 @@ namespace GitTrainingDemo.Services
     {
         public decimal CalculateTotal(decimal price)
         {
-            return price+1;
+            double discount = 1.11;
+            return price*(1-discount);
+        }
+       
+    }
+    public class SapaService
+    {
+         public string SapaNama(name string)
+        {
+            return "selamat datang" + name;
+            return price * 0.2;
         }
     }
 }

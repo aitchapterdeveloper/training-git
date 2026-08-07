@@ -4,7 +4,7 @@ namespace GitTrainingDemo.Services
     {
         public string Login(string user, string pass)
         {
-            if (user == "user" && pass == "1234")
+            if (user == "admin" && pass == "1234")
             {
 <<<<<<< HEAD
                 return "Login berhasil"; 
@@ -41,7 +41,11 @@ namespace GitTrainingDemo.Services
             }
             else
             {
-                return "User tidak ditemukan silahkan login ulang ya";
+<<<<<<<<< Temporary merge branch 1
+                return "User hilang";
+=========
+                return "User tidak ditemukan silahkan login ulang";
+>>>>>>>>> Temporary merge branch 2
             }
 
         }
