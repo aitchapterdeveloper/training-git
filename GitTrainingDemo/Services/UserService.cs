@@ -8,13 +8,13 @@ namespace GitTrainingDemo.Services
             {
                 return "Login berhasil";
             }
-            else if (user == "admin")
+            else if (user == "admin") // testA
             {
-                return "Password salah";//sfeifn
+                return "Password salah"; //test commit
             }
             else
             {
-                return "User tidak ditemukan";
+                return "User tidak ditemukan silahkan login ulang";
             }
         }
     }
