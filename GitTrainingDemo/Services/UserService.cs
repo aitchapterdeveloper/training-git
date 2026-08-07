@@ -4,7 +4,7 @@ namespace GitTrainingDemo.Services
     {
         public string Login(string user, string pass)
         {
-            if (user == "admin" && pass == "1234")
+            if (user == "admin" && pass == "2424") //change admin default password to 2424
             {
                 return "Login berhasil";
             }
