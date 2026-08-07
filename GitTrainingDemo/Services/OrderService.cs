@@ -4,6 +4,7 @@ namespace GitTrainingDemo.Services
     {
         public decimal CalculateTotal(decimal price)
         {
+
             return price * 1.11m; //ppn 11%
         }
     }
