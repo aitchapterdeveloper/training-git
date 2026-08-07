@@ -1,4 +1,4 @@
-namespace GitTrainingDemo.Services //test commit O.o ooado0ado0adkjnaaoaooaoaoaoaoaoaooa
+namespace GitTrainingDemo.Services
 {
     public class UserService
     {
@@ -6,11 +6,12 @@ namespace GitTrainingDemo.Services //test commit O.o ooado0ado0adkjnaaoaooaoaoao
         {
             if (user == "admin" && pass == "1234")
             {
-                return "Login berhasil wow";
+                return "Login Success !!!";
             }
             else if (user == "admin")
             {
-                return "Password salah bruh"; //test commit
+                return "Password salah"; // Test Commit
+
             }
             else
             {
