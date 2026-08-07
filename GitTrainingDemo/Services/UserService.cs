@@ -14,7 +14,7 @@ namespace GitTrainingDemo.Services
             }
             else
             {
-                return "User tidak ditemukan";
+                return "User hilang";
             }
         }
     }
