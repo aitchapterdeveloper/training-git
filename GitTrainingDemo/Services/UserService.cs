@@ -10,11 +10,8 @@ namespace GitTrainingDemo.Services
             }
             else if (user == "admin")
             {
-<<<<<<< HEAD
                 return "Password salah"; // Test Commit
-=======
-                return "Password salah"; //test commit
->>>>>>> origin
+
             }
             else
             {
