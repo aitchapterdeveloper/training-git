@@ -4,9 +4,9 @@ namespace GitTrainingDemo.Services
     {
         public string Login(string user, string pass)
         {
-            if (user == "admin" && pass == "1234")
+            if (user == "user" && pass == "1234")
             {
-                return "Login berhasil";
+                return "Login berhasil"; 
             }
             else if (user == "admin")
             {
