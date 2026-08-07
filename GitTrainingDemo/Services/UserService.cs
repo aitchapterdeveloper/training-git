@@ -6,16 +6,17 @@ namespace GitTrainingDemo.Services
         {
             if (user == "admin" && pass == "1234")
             {
-                return "Login berhasil deh";
+                return "Login berhasil deh1";
             }
             else if (user == "admin")
             {
-                return "Password salah";
+                return "Password salah"; //test pelatihan
             }
             else
             {
                 return "User hilang";
             }
+
         }
     }
 }
