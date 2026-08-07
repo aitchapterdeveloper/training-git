@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace GitTrainingDemo.Services
 {
     public class UserService
@@ -12,26 +14,23 @@ namespace GitTrainingDemo.Services
             {
                 return "Password salah"; //test commit
             }
+            else if (pass.Length < 4)
+            {
+                return "Password anda pendek";
+            }
             else
             {
                 return "User tidak ditemukan silahkan login ulang";
             }
         }
 
-        public string LoginTest(string user, string pass)
+        public string Loginn(string user, string pass)
         {
-            if (user == "adminxx" && pass == "123456")
-            {
-                return "Login berhasil ya";
-            }
-            else if (user == "admin")
-            {
-                return "Password salah ya"; //test commit
-            }
-            else
-            {
-                return "User tidak ditemukan silahkan login ulang ya";
-            }
+            return (user == "admin" && pass == "1234")
+            ? "Login berhasil"
+            : "Login gagal";
         }
+
+
     }
 }
