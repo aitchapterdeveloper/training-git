@@ -38,7 +38,8 @@ namespace GitTrainingDemo.Services
         }
         public void ForLoop()
         {
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 10; i++)
+            {
                 Console.WriteLine("Nomor " + i);
                 i++;
             }
@@ -143,6 +144,7 @@ namespace GitTrainingDemo.Services
             }
         }
     }
+
     //Inheritance (Pewarisan)
     public class Cat : Animal // Cat mewarisi Animal
     {
@@ -162,6 +164,7 @@ namespace GitTrainingDemo.Services
             Console.WriteLine(Name + " is breathing.");
         }
     }
+
     //Polymorphism Overloading
     public class Calculator
     {
@@ -179,48 +182,28 @@ namespace GitTrainingDemo.Services
         }
     }
 
-    public class Person
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-        // Constructor 1: hanya nama
-        public Person(string name)
-        {
-            Name = name;
-            Age = 0;
-        }
-        // Constructor 2: nama + umur
-        public Person(string name, int age)
-        {
-            Name = name;
-            Age = age;
-        }
-    }
-        Person p1 = new Person("Adi");
-        Person p2 = new Person("Budi", 25);
-
     //Polymorphism Override
     public class Cow : Animals
-     {
+    {
         public override void MakeSound()
         {
             Console.WriteLine("Mooooo");
         }
-     }
+    }
     public class Goat : Animals
-     {
+    {
         public override void MakeSound()
         {
             Console.WriteLine("Ankara Messi");
         }
-     }
+    }
     public class Animals
     {
         public virtual void MakeSound()
         {
             Console.WriteLine("Some generic sound");
         }
-     }
+    }
 
     //Abstraction
     public abstract class Shape
