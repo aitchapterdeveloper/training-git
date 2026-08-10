@@ -1,122 +1,341 @@
-using GitTrainingDemo.Services;
-using System;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using GitTrainingDemo.Services;
+
+List<int> numbers = new List<int> { 5, 12, 15, 7, 20, 18, 40, 70, 35, 55, 90, 80 };
+List<int> result = new List<int>();
+
+
+
+Console.WriteLine("tanpa linq");
+foreach (int n in numbers)
+{
+    if (n > 10)
+    {
+        result.Add(n);
+    }
+}
+foreach (int n in result)
+{
+    Console.WriteLine(n);
+}
+
+
+
+
+Console.WriteLine("dengan linq");
+var resultLinq = from n in numbers
+                 where n > 10
+                 select n;
+
+foreach (int n in resultLinq)
+{
+    Console.WriteLine(n);
+}
+
+
+//where
+Console.WriteLine("dengan Wehere");
+var filtered = numbers.Where(n => n > 10);
+
+foreach (var i in filtered)
+{
+    Console.WriteLine(i);
+}
+
+//dengan orderby
+Console.WriteLine("dengan order by");
+var nums = numbers.OrderByDescending(n => n);
+
+foreach (var num in nums)
+{
+    Console.WriteLine(num);
+}
+
+//select
+Console.WriteLine("dengan select");
+var newNums = numbers.Select(n => n * 2);
+
+foreach (var newN in newNums)
+{
+    Console.WriteLine(newN);
+}
+
+//groupBy
+Console.WriteLine("dengan group by");
+var grouped = numbers.GroupBy(n => n % 2);
+foreach (var groupN in grouped)
+{
+    Console.WriteLine("key:");
+    Console.WriteLine(groupN);
+}
+
+//cek beberapa
+Console.WriteLine("data");
+var cekData = numbers.Where(n => n > 10).Select(n => n * 2).OrderBy(n => n);
+foreach (var data in cekData)
+{
+    Console.WriteLine(data);
+}
+
+
+//cek beberapa tolist
+Console.WriteLine("dengan tolist");
+var CekData = numbers.Where(n => n > 1).Select(n => n * 2).OrderBy(n => n).ToList();
+foreach (var data in CekData)
+{
+    Console.WriteLine(data);
+}
+
+//cek count
+Console.WriteLine("count");
+var Count = numbers.Count(n => n > 5);
+Console.WriteLine(Count);
+
+
+//sum
+Console.WriteLine("sum data");
+var SumData = numbers.Sum();
+Console.WriteLine(SumData);
+
+//average
+Console.WriteLine("average data");
+var AvgData = numbers.Average();
+Console.WriteLine(AvgData);
+
+
+//any
+Console.WriteLine("any data");
+var AnyData = numbers.Any(n => n > 20);
+Console.WriteLine(AnyData);
+
+
+//all
+Console.WriteLine("all data");
+var AllData = numbers.All(n => n > 10);
+Console.WriteLine(AllData);
+
+//defered
+Console.WriteLine("defered eksekusi");
+var query = numbers.Where(n => n > 10);
+numbers.Add(20);
+foreach (var r in query)
+{
+    Console.WriteLine(r);
+}
+
+//immediate
+Console.WriteLine("immediate eksekusi");
+var hasil = numbers.Where(n => n > 10).ToList();
+numbers.Add(200);
+foreach (var hsl in hasil)
+{
+    Console.WriteLine(hsl);
+}
+
+
+
+
+//async dan await
+Console.WriteLine("async / await");
+
+var resultAsync = await GetDataAsync(42);
+Console.WriteLine(resultAsync);
+
+
+async Task<string> GetDataAsync(int id)
+{
+    await Task.Delay(500);
+
+    return $"Data untuk id: {id}";
+}
+
+
+
+//name
+var resultNameAsync = await getNameAsync("rizal");
+Console.WriteLine(resultNameAsync);
+
+async Task<string> getNameAsync(string name)
+{
+    await Task.Delay(500);
+    return $"Nama adalah: {name}";
+}
+
+
+//latihan
+var resultGetUserName = await getUserNameAsync(12);
+Console.WriteLine(resultGetUserName);
+
+async Task<string> getUserNameAsync(int id)
+{
+    await Task.Delay(300);
+    return $"user-{id}";
+}
+
+
+
+//soal latihan
+async Task<String> DownloadFileAsync()
+{
+    await Task.Delay(2000);
+    return "donwload berhasil";
+}
+async Task<String> CompressFileAsync()
+{
+    await Task.Delay(2000);
+    return "donwload berhasil";
+}
+async Task<String> UploadFileAsync()
+{
+    await Task.Delay(2000);
+    return "donwload berhasil";
+}
+
+string DownloadFileSync()
+{
+    Task.Delay(2000).Wait();
+    return "download file";
+}
+
+
+string CompressFileSync()
+{
+    Task.Delay(2000).Wait();
+    return "download file";
+}
+
+
+string UploadFileSync()
+{
+    Task.Delay(2000).Wait();
+    return "download file";
+}
+
+
+//sync
+var sw = Stopwatch.StartNew();
+
+DownloadFileSync();
+CompressFileSync();
+UploadFileSync();
+
+sw.Stop();
+
+Console.WriteLine($"Sync  : {sw.ElapsedMilliseconds} ms");
+
+
+//async
+sw.Restart();
+
+Task t1 = DownloadFileAsync();
+Task t2 = CompressFileAsync();
+Task t3 = UploadFileAsync();
+
+await Task.WhenAll(t1, t2, t3);
+
+sw.Stop();
+
+Console.WriteLine($"Async : {sw.ElapsedMilliseconds} ms");
+
+
+string test()
+{
+    return "halo";
+}
+Console.WriteLine(test());
+
+
+
+
+//async all the way
+async Task<string> GetDataInternalAsync(int id)
+{
+    // Untuk library, ConfigureAwait(false)
+    // menghindari penangkapan SynchronizationContext
+    await Task.Delay(500).ConfigureAwait(false);
+    return $"Data untuk id: {id}";
+}
+
+async Task<string> GetFormattedDataAsync(int id)
+{
+    var rawData = await GetDataInternalAsync(id);
+    return $"Formatted: {rawData}";
+}
+
+var Data = await GetFormattedDataAsync(29);
+Console.WriteLine(Data);
+
+
+
+//program srp
 
 var userService = new UserService();
-Console.WriteLine(userService.Login("admin", "12"));
 
-var orderService = new OrderService();
-Console.WriteLine(orderService.CalculateTotal(100000));
+var validator = new userValidator();
+validator.Uservalidate("budi@gmail.com");
 
-var SapaService = new SapaService(); 
-SapaService.SapaNama("Rizal","Fahmi"); 
-var calculate = new calculator();
+var repository = new userRepository();
+repository.SaveToDatabase("budi@gmail.com");
 
-Console.WriteLine(SapaService.GetGreeting("rizal", "tuban")); 
-
-var cekNim = new cekNim();
-Console.WriteLine(cekNim.CekNim(1234));
-cekNim.cetakAngka(10);
-
-var LatihanSatu = new LatihanSatu();
-LatihanSatu.TampilkanNama();
-LatihanSatu.belajarList();
-LatihanSatu.belajarDictionary();
-
-var product1 = new Product("Laptop", 12000000);
-
-var product2 = new Product("Pensil", 12000000);
-Console.WriteLine(product1.Name);
-Console.WriteLine($"{product1.Name} : {product1.Price}");
-Console.WriteLine(product2.Price);
-
-BankAccount acc = new BankAccount();
-acc.Balance = 10000;
-
-Console.WriteLine("total balance "+ acc.Balance);
-
-var cat = new Cat();
-cat.Name = "Milo";
-cat.Age = 3;
-cat.Breathe();
-cat.Scratch();
-
-Console.WriteLine("total : "+calculate.Add(1,2,3,4));
-Console.WriteLine("total : "+calculate.Add(1.5,2.5,3.5));
+var welcome = new WelcomeService();
+welcome.sendWelcome("budi@gmail.com");
 
 
 
 
-Circle circle = new Circle();
+// Program ocp
+double price = 100000;
 
-circle.Color = "Merah";
-circle.Radius = 7;
+IDiscount regular = new RegularDiscount();
+Console.WriteLine($"Regular: {regular.Apply(price)}");
 
-circle.DisplayColor();
-Console.WriteLine("Luas Circle: " + circle.CalculateArea());
+IDiscount vip = new VIPDiscount();
+Console.WriteLine($"VIP: {vip.Apply(price)}");
 
+IDiscount student = new StudentDiscount();
+Console.WriteLine($"Student: {student.Apply(price)}");
 
-Rectangle rectangle = new Rectangle();
-
-rectangle.Color = "Biru";
-rectangle.Width = 10;
-rectangle.Height = 5;
-
-rectangle.DisplayColor();
-Console.WriteLine("Luas Rectangle: " + rectangle.CalculateArea());
-
-Triangle triangle = new Triangle();
-triangle.Color = "hijau";
-triangle.Base = 10;
-triangle.Height = 5;
-
-triangle.DisplayColor();
-
-Console.WriteLine("Luas triangle: " + triangle.CalculateArea());
-
-public abstract class Shape
-{
-    public string Color { get; set; }
+IDiscount FlashSale = new FlashDiscount();
+Console.WriteLine($"Flash sale: {FlashSale.Apply(price)}");
 
 
-    public abstract double CalculateArea();
+//lsp
+Console.WriteLine($"rectangle: {new Rectangle { Width = 10, Height = 5 }.Area()}");
 
-   
-    public void DisplayColor()
-    {
-        Console.WriteLine("Color: " + Color);
-    }
-}
+Console.WriteLine($"square: {new Square { Side = 5 }.Area()}");
 
+//interface
+Console.WriteLine("Hewan");
+var cat = new Hewan();
+cat.Eat();
+cat.Sleep();
 
-public class Circle : Shape
-{
-    public double Radius { get; set; }
-
-    public override double CalculateArea()
-    {
-        return Math.PI * Radius * Radius;
-    }
-}
+Console.WriteLine("human");
+var human = new Human();
+human.Eat();
+human.Sleep();
+human.Eat();
 
 
-public class Rectangle : Shape
-{
-    public double Width { get; set; }
-    public double Height { get; set; }
 
-    public override double CalculateArea()
-    {
-        return Width * Height;
-    }
-}
+var email = new EmailServiceSimple();
+var github = new GithubService(); 
+var order = new OrderrService(github);
 
-public class Triangle : Shape
-{
-    public double Base { get; set; }
-    public double Height { get; set; }
-    public override double CalculateArea()
-    {
-        return 0.5 * Base * Height;
-    }
-}
+order.PlaceOrder();
+
+//definiskan variable service di class nya
+//baru panggil fungsi/method dari class nya
+var service = new PaymentService();
+
+service.ProcessPayment(
+    new CreditCardPayment(),
+    100000,
+    "customer@email.com"
+);
