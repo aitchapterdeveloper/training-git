@@ -183,48 +183,128 @@ using System.Diagnostics;
 //var vipDiscount = new VIPDiscount();
 //Console.WriteLine(vipDiscount.Apply(500000));
 
-ISendNotification notification = new SendEmail();
+//ISendNotification notification = new SendEmail();
 
-OrderServiceTes orderService = new OrderServiceTes(notification);
+//PaymentCreditCard paymentCreditCard = new PaymentCreditCard(notification, 100000, "fachri@gmail.com");
+//paymentCreditCard.PlaceOrder();
 
-orderService.PlaceOrder();
 
-interface ISendNotification
-{
-    void SendNotification(string message);
-}
+//interface ISendNotification
+//{
+//    void SendNotification(string message);
+//}
 
-class SendWhatsApp : ISendNotification
-{
-    public void SendNotification(string message)
-    {
-        Console.WriteLine("WhatsApp: " + message);
-    }
-}
+//interface AdminFee
+//{
+//    double CalculatePayment(double amount);
+//}
 
-class SendEmail: ISendNotification
-{
-    public void SendNotification(string message)
-    {
-        Console.WriteLine("Email: " + message);
-    }
-}
+//class SendWhatsApp : ISendNotification
+//{
+//    public void SendNotification(string message)
+//    {
+//        Console.WriteLine("WhatsApp: " + message);
+//    }
+//}
 
-class OrderServiceTes
-{
-    private readonly ISendNotification _notification;
+//class SendEmail : ISendNotification
+//{
+//    public void SendNotification(string message)
+//    {
+//        Console.WriteLine("Email: " + message);
+//    }
+//}
 
-    public OrderServiceTes(ISendNotification notification)
-    {
-        _notification = notification;
-    }
+//class CreditCard : AdminFee
+//{
+//    public double CalculatePayment(double amount)
+//    {
+//        return amount + amount * 0.03;
+//    }
+//}
 
-    public void PlaceOrder()
-    {
-        Console.WriteLine("Order berhasil dibuat!");
+//class BankTransfer : AdminFee
+//{
 
-        _notification.SendNotification(
-            "Pesanan berhasil dibuat."
-        );
-    }
-}
+//    public double CalculatePayment(double amount)
+//    {
+//        return amount + 5000;
+//    }
+//}
+
+//class EWallet : AdminFee
+//{
+//    public double CalculatePayment(double amount)
+//    {
+//        return amount + amount * 0.01;
+//    }
+//}
+
+//class PaymentCreditCard : CreditCard
+//{
+//    private readonly CreditCard creditCard;
+//    private readonly ISendNotification _notification;
+//    string _customer;
+//    double _amount;
+//    double total;
+
+//    public PaymentCreditCard(ISendNotification notification, double amount, string customer)
+//    {
+//        creditCard = new CreditCard();
+//        _notification = notification;
+//        _amount = amount;
+//        _customer = customer;
+//        total = CalculatePayment(amount);
+//    }
+
+//    public void PlaceOrder()
+//    {
+//        _notification.SendNotification($"[EMAIL] Receipt sent to {_customer}: Rp{total}");
+//    }
+//}
+
+//class PaymentBankTransfer: BankTransfer
+//{
+//    private readonly BankTransfer bankTransfer;
+//    private readonly ISendNotification _notification;
+//    string _customer;
+//    double _amount;
+//    double total;
+
+//    public PaymentBankTransfer(ISendNotification notification, double amount, string customer)
+//    {
+//        bankTransfer = new BankTransfer();
+//        _notification = notification;
+//        _amount = amount;
+//        _customer = customer;
+//        total = CalculatePayment(amount);
+//    }
+
+//    public void PlaceOrder()
+//    {
+//        _notification.SendNotification($"[EMAIL] Receipt sent to {_customer}: Rp{total}");
+//    }
+//}
+
+//class PaymentEWallet: EWallet
+//{
+//    private readonly EWallet eWallet;
+//    private readonly ISendNotification _notification;
+//    string _customer;
+//    double _amount;
+//    double total;
+
+//    public PaymentEWallet(ISendNotification notification, double amount, string customer)
+//    {
+//        eWallet = new EWallet();
+//        _notification = notification;
+//        _amount = amount;
+//        _customer = customer;
+//        total = CalculatePayment(amount);
+//    }
+
+//    public void PlaceOrder()
+//    {
+//        _notification.SendNotification($"[EMAIL] Receipt sent to {_customer}: Rp{total}");
+//    }
+//}
