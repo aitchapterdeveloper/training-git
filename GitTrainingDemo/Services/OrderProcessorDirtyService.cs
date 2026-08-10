@@ -2,35 +2,37 @@ using System;
 
 namespace GitTrainingDemo.Services
 {
-    public class OrderProcessorDirtyService
+    public class OrderProcessorDirtyService(string name, string email)
     {
-        public string Name;
-        public string Email;
+        public string name = name;
+        public string email = email;
 
-        public void Process(int orderId, double price, int qty, int customerAge)
+        public void Process(int orderId, double price, int quantity, int customerAge)
         {
-            // Validasi
-            if (price <= 0) throw new InvalidOperationException("Harga tidak valid");
-            if (qty <= 0) throw new InvalidOperationException("Qty tidak valid");
-
-            // Kalkulasi total
-            double total = price * qty;
-
-            // Magic number — diskon dan pajak tanpa nama jelas
-            if (customerAge > 17)
+            ValidatePrice(price);
+            ValidateQuantity(quantity);
+            double total = price * quantity;
+            int legalAge = 17;
+            double taxRate = 0.21;
+            double discountRate = 0.1;
+            if (customerAge > legalAge)
             {
-                total = total * 0.21 + total;
+                total = total * taxRate + total;
             }
-            total = total - (total * 0.1); // diskon 10%, duplikasi logika diskon
-
-            // Simpan
+            total = total - (total * discountRate);
             Console.WriteLine($"Order {orderId} disimpan dengan total {total}");
-
-            // Kirim notifikasi
-            Console.WriteLine($"Order {orderId} confirmed — email terkirim ke {Email}");
-
-            // Backup — tidak berhubungan dengan proses order
-            Console.WriteLine("Backup database dijalankan...");
+            Console.WriteLine($"Order {orderId} confirmed ï¿½ email terkirim ke {email}");
         }
+
+        void ValidatePrice(double price)
+        {
+            if (price <= 0) throw new InvalidOperationException("Harga tidak valid");
+        }
+
+        void ValidateQuantity(int quantity)
+        {
+            if (quantity <= 0) throw new InvalidOperationException("Qty tidak valid");
+        }
+
     }
 }

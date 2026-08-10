@@ -158,6 +158,9 @@ paymentService.ProcessPayment(123,"Kenny");
 // orderServicePigeon._notif.send("Noice");
 // orderServiceWa._notif.send("Noice");
 
+var orderProcess = new OrderProcessorDirtyService("Jamal", "Jamal@mail.com");
+orderProcess.Process(1,-12,0,17);
+
 
 List<int> InitiateList()
 {
