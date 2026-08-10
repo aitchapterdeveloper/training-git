@@ -1,4 +1,5 @@
 using System;
+using GitTrainingDemo.Model;
 public abstract class Shape
 {
     public string Color { get; set; }
@@ -27,13 +28,20 @@ public class Circle: Shape
     }
 }
 
-public class Rectangle: Shape
+public class Rectangle: Shape, IShape
 {
     public double Width { get; set; }
     public double Height { get; set; }
+
+    public Rectangle(double width, double height)
+    {
+        Width = width;
+        Height = height;
+    }
 
     public override double CalculateArea()
     {
         return Width * Height;
     }
+    public double Area() => Width * Height;
 }

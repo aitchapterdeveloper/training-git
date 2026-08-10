@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GitTrainingDemo.Services;
+using GitTrainingDemo.Model;
 
 var userService = new UserService();
 //Console.WriteLine(userService.Login("admin1", "124"));
@@ -44,8 +45,13 @@ var asyncService = new AsyncService();
 
 //Console.WriteLine(result);
 
-var syncTime = asyncService.stopwatchSync();
-var asyncTime =  await asyncService.stopwatchAsync();
+//var syncTime = asyncService.stopwatchSync();
+//var asyncTime =  await asyncService.stopwatchAsync();
 
-Console.WriteLine($"Synchronous task takes: {syncTime}ms");
-Console.WriteLine($"Asynchronous task takes: {asyncTime}ms");
+//Console.WriteLine($"Synchronous task takes: {syncTime}ms");
+//Console.WriteLine($"Asynchronous task takes: {asyncTime}ms");
+
+var rectangle = new Rectangle(4, 7);
+
+Console.WriteLine(rectangle.Area());
+
