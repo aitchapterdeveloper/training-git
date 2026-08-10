@@ -641,14 +641,18 @@ var orderService = new OrderService();
 // Latihan
 //Ubah ini jadi prinsip SOLID
 
-EmailNotificationSend emailNotificationSend = new EmailNotificationSend();
-PaymentValidator paymentValidator = new PaymentValidator();
-PaymentService paymentService = new PaymentService(paymentValidator, emailNotificationSend);
+//EmailNotificationSend emailNotificationSend = new EmailNotificationSend();
+//PaymentValidator paymentValidator = new PaymentValidator();
+//PaymentService paymentService = new PaymentService(paymentValidator, emailNotificationSend);
 
-IPaymentMethod cc = new CreditPayment();
-paymentService.ProcessPayment(cc, 1000, "adins@gmail.com");
+//IPaymentMethod cc = new CreditPayment();
+//paymentService.ProcessPayment(cc, 1000, "adins@gmail.com");
 
-Console.WriteLine();
+//Console.WriteLine();
 
-IPaymentMethod ewallet = new EWalletPayment();
-paymentService.ProcessPayment(ewallet, 1000, "adins@gmail.com");
+//IPaymentMethod ewallet = new EWalletPayment();
+//paymentService.ProcessPayment(ewallet, 1000, "adins@gmail.com");
+
+
+OrderProcessorDirtyService orderProcessorDirtyService = new OrderProcessorDirtyService();
+orderProcessorDirtyService.Process(1, 1000, 1, 19, "AdIns", "adins@gmail.com");
