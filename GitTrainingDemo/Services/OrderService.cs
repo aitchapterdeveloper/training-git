@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
+using GitTrainingDemo.Interfaces;
 
 namespace GitTrainingDemo.Services
 {
-    public class OrderService
+    class OrderService
     {
         private string name { get; set; } = "";
         private string gender { get; set; } = "Unknown";
+        public readonly INotification _notif;
 
+        public OrderService(INotification notif)
+        {
+            _notif =notif;
+        }
+        
         private Dictionary<string, string> vehicles = new Dictionary<string, string>
         {
           {"C","Car"},

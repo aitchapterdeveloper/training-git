@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.Xml.XPath;
+using GitTrainingDemo.Interfaces;
 using GitTrainingDemo.Services;
 
 // // var userService = new UserService();
@@ -54,50 +55,50 @@ using GitTrainingDemo.Services;
 // var triangle = new Triangle(12,5);
 // Console.WriteLine(triangle.CalculateArea());
 
-List<int> funnyNumber = [67, 69420, 360];
-List<int> myList = InitiateList();
-PrintList(myList);
+// List<int> funnyNumber = [67, 69420, 360];
+// List<int> myList = InitiateList();
+// PrintList(myList);
 
-Console.WriteLine("");
-foreach (var number in myList)
-{
-    if (funnyNumber.Contains(number))
-    {
-        Console.WriteLine($"{number} is a funny number");
-    }
-}
+// Console.WriteLine("");
+// foreach (var number in myList)
+// {
+//     if (funnyNumber.Contains(number))
+//     {
+//         Console.WriteLine($"{number} is a funny number");
+//     }
+// }
 
-var results =
-    from n in myList
-    // where funnyNumber.Contains(n)
-    select n;
+// var results =
+//     from n in myList
+//     // where funnyNumber.Contains(n)
+//     select n;
 
-Console.WriteLine("Pakai LINQ COYYYYYYY");
-foreach (int result in results)
-{
-    Console.WriteLine($"{result} is a funny number");
-}
+// Console.WriteLine("Pakai LINQ COYYYYYYY");
+// foreach (int result in results)
+// {
+//     Console.WriteLine($"{result} is a funny number");
+// }
 
-Console.WriteLine("Grouping pakai LINQ");
+// Console.WriteLine("Grouping pakai LINQ");
 
-var groups = myList
-    .GroupBy(n => n % 2);
-var even = groups
-    .Where(g => g.Key == 0);
-var odd = groups
-    .Where(g => g.Key == 1);
+// var groups = myList
+//     .GroupBy(n => n % 2);
+// var even = groups
+//     .Where(g => g.Key == 0);
+// var odd = groups
+//     .Where(g => g.Key == 1);
 
-foreach (var i in odd)
-{
-    PrintList(i.ToList());
-}
+// foreach (var i in odd)
+// {
+//     PrintList(i.ToList());
+// }
 
-Console.WriteLine("Aggregate using LINQ");
-Console.WriteLine($"Sum : {myList.Sum()}");
-Console.WriteLine($"Avg : {myList.Average()}");
-Console.WriteLine($"Count : {myList.Count()}");
-Console.WriteLine($"Any 67 : {myList.Any(n => n == 67)}");
-Console.WriteLine($"is All Odd  : {myList.All(n => n % 2 == 1)}");
+// Console.WriteLine("Aggregate using LINQ");
+// Console.WriteLine($"Sum : {myList.Sum()}");
+// Console.WriteLine($"Avg : {myList.Average()}");
+// Console.WriteLine($"Count : {myList.Count()}");
+// Console.WriteLine($"Any 67 : {myList.Any(n => n == 67)}");
+// Console.WriteLine($"is All Odd  : {myList.All(n => n % 2 == 1)}");
 
 // DefferedTest(myList);
 // ImmidiateTest(myList);
@@ -113,10 +114,50 @@ Console.WriteLine($"is All Odd  : {myList.All(n => n % 2 == 1)}");
 // await BatchProcessAsync();
 // await GetUserEndpoint(67);
 
-var newUser = new UserManager(1);
-newUser.SaveUserData("Data");
-newUser.ValidateUser();
-newUser.SendEmail(12);
+// var newUser = new UserManager(1);
+// newUser.SaveUserData("Data");
+// newUser.ValidateUser();
+// newUser.SendEmail(12);
+
+// var square = new Square();
+// square.Width =5;
+// square.Height =10;
+
+// var rect = new Rectangle();
+// rect.Height = 10;
+// rect.Width = 5;
+
+// var fixedSquare = new FixedSquare(5);
+// var fixedRect= new FixedRectangle(5,10);
+
+// Console.WriteLine($"{square.Area()}");
+// Console.WriteLine($"{rect.Area()}");
+// Console.WriteLine($"{fixedSquare.Area()}");
+// Console.WriteLine($"{fixedRect.Area()}");
+
+// var tyronne =new HumanWorker("Tyronne");
+// tyronne.doWork();
+// tyronne.eat();
+// tyronne.sleep();
+
+// var janeDoe = new UndeadWorker("Jane Doe");
+// janeDoe.doWork();
+
+var wa = new WhatsAppNotification();
+var pigeon = new PigeonNotification();
+var email = new EmailNotification();
+var orderServiceEmail = new OrderService(email);
+var orderServicePigeon = new OrderService(pigeon);
+var orderServiceWa = new OrderService(wa);
+
+var notif = new EmailNotification();
+var paymentMethod = new BankTransfer();
+var paymentService = new PaymentService(paymentMethod,notif); 
+paymentService.ProcessPayment(6767676767,"Kenny");
+// orderServiceEmail._notif.send("Noice");
+// orderServicePigeon._notif.send("Noice");
+// orderServiceWa._notif.send("Noice");
+
 
 List<int> InitiateList()
 {
