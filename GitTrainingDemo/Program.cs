@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using GitTrainingDemo.Services;
 using GitTrainingDemo.Models;
 using System.Net.Http.Headers;
+using System.Linq;
 
+/*
 var userService = new UserService();
 Console.WriteLine(userService.Login("admin", "1234"));
 
@@ -90,3 +92,67 @@ Triangle triangle = new Triangle();
 triangle.Base = 5;
 triangle.Height = 12;
 Console.WriteLine("TRIANGLE: " + triangle.CalculateArea());
+*/
+
+
+
+List<int> arr = new List<int>();
+
+for (int i = 0; i < 10; i++)
+{
+    arr.Add(i + 1);
+}
+
+//foreach (var n in arr)
+//{
+//    Console.WriteLine(n);
+//}
+
+// NO LINQ
+
+List<int> result = new List<int>();
+foreach (var n in arr) 
+{
+    if (n % 2 == 0)
+        result.Add(n);
+}
+
+Console.WriteLine("No LINQ: ");
+foreach (var n in result)
+{
+    Console.Write(n + " ");
+}
+
+var queryResult = 
+    from n in arr
+    where n % 2 == 0
+    select n;
+
+Console.WriteLine("\nLINQ: ");
+foreach (var n in queryResult)
+{
+    Console.Write(n + " ");
+}
+
+var queryResultChain = arr
+    .Where(n => n % 2 != 0)
+    .OrderByDescending(n => n)
+    .GroupBy(n => n >= 5)
+    .ToList();
+
+Console.WriteLine("\nLINQ Method Chain, Total Groups: " + queryResultChain.Count());
+foreach (var group in queryResultChain)
+{
+    Console.Write("Group " + (group.Key ? ">= 5" : "< 5") + ": ");
+    foreach (var n in group)
+    {
+        Console.Write(n + " ");
+    }
+    Console.WriteLine("");
+}
+
+Console.WriteLine("Count: " + arr.Count(n => n >= 5));
+Console.WriteLine("Sum: " + arr.Sum());
+Console.WriteLine("Avg: " + arr.Average());
+Console.WriteLine("Any: " + arr.Any(n => n == 6 || n == 7));
+Console.WriteLine("All: " + arr.All(n => n > 0));
