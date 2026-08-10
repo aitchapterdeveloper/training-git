@@ -6,5 +6,10 @@ namespace GitTrainingDemo.Services
         {
             return price;
         }
+
+        public string GetGreeting(string name, string waktu)
+        {
+            return "Halo " + name + ", Selamat " + waktu + "!";
+        }
     }
 }

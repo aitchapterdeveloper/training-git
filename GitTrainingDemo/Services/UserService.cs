@@ -1,21 +1,50 @@
+using System;
+
 namespace GitTrainingDemo.Services
 {
     public class UserService
     {
-        public string Login(string user, string pass)
+        public bool Login(string user, string pass)
         {
-            if (user == "admin" && pass == "1234")
+            if (user == "fachri" && pass == "1234")
             {
-                return "Login berhasil";
-            }
-            else if (user == "admin")
-            {
-                return "Password salah"; //test commit
+                return true;
             }
             else
             {
-                return "User tidak ditemukan silahkan login ulang";
+                return false;
             }
+        }
+    }
+
+    public class UserValidator
+    {
+        public void Validate(string user, string password, out string result)
+        {
+            if (user == "fachri" && password == "1234")
+            {
+                result = "Login Berhasil";
+            }
+            else
+            {
+                result = "Login Gagal";
+            }
+        }
+    }
+
+    public class UserRepository
+    {
+        public void Save(string user)
+        {
+            Console.WriteLine($"Simpan ke database: {user}");
+        }
+    }
+
+    public class EmailService
+    {
+        public void Send(string email)
+        {
+            Console.WriteLine($"Kirim welcome email ke: {email}");
         }
     }
 }
