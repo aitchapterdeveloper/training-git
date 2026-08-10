@@ -4,14 +4,18 @@ using GitTrainingDemo.Services;
 using GitTrainingDemo.Models;
 using System.Net.Http.Headers;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
-/*
 var userService = new UserService();
-Console.WriteLine(userService.Login("admin", "1234"));
+//Console.WriteLine(userService.Login("admin", "1234"));
 
 var orderService = new OrderService();
-Console.WriteLine("Discounted total of 100000 = " + orderService.CalculateTotal(100000));
+//Console.WriteLine("Discounted total of 100000 = " + orderService.CalculateTotal(100000));
 
+var documentService = new DocumentService();
+/*
 Console.WriteLine(orderService.GetGreeting("grEetInGS          ", "John Pork")); 
 orderService.GetFullNameGreeting("John", "Pork");
 
@@ -94,11 +98,11 @@ triangle.Height = 12;
 Console.WriteLine("TRIANGLE: " + triangle.CalculateArea());
 */
 
-
+/*
 
 List<int> arr = new List<int>();
 
-for (int i = 0; i < 10; i++)
+for (int i = 0; i < 50; i++)
 {
     arr.Add(i + 1);
 }
@@ -137,13 +141,12 @@ foreach (var n in queryResult)
 var queryResultChain = arr
     .Where(n => n % 2 != 0)
     .OrderByDescending(n => n)
-    .GroupBy(n => n >= 5)
-    .ToList();
+    .GroupBy(n => n >= arr.Count / 2);
 
 Console.WriteLine("\nLINQ Method Chain, Total Groups: " + queryResultChain.Count());
 foreach (var group in queryResultChain)
 {
-    Console.Write("Group " + (group.Key ? ">= 5" : "< 5") + ": ");
+    Console.Write("Group " + (group.Key ? $">= {arr.Count / 2}" : $"< {arr.Count / 2}") + ": ");
     foreach (var n in group)
     {
         Console.Write(n + " ");
@@ -151,8 +154,93 @@ foreach (var group in queryResultChain)
     Console.WriteLine("");
 }
 
-Console.WriteLine("Count: " + arr.Count(n => n >= 5));
-Console.WriteLine("Sum: " + arr.Sum());
-Console.WriteLine("Avg: " + arr.Average());
-Console.WriteLine("Any: " + arr.Any(n => n == 6 || n == 7));
-Console.WriteLine("All: " + arr.All(n => n > 0));
+Console.WriteLine("Count (second half of arr):\t" + arr.Count(n => n >= arr.Count / 2));
+Console.WriteLine("Sum:\t" + arr.Sum());
+Console.WriteLine("Avg:\t" + arr.Average());
+Console.WriteLine("Any SIX SEVEN??:\t" + arr.Any(n => n == 6 || n == 7 || n == 67));
+Console.WriteLine("All are positive numbers:\t" + arr.All(n => n > 0));
+
+int currentArrCount = arr.Count;
+for (int i = 0; i < 50; i++)
+{
+    arr.Add(i + 1 + currentArrCount);
+}
+
+Console.WriteLine("Deferred LINQ Method, added elements, Total Groups: " + queryResultChain.Count());
+foreach (var group in queryResultChain)
+{
+    Console.Write("Group " + (group.Key ? $">= {arr.Count / 2}" : $"< {arr.Count / 2}") + ": ");
+    foreach (var n in group)
+    {
+        Console.Write(n + " ");
+    }
+    Console.WriteLine("");
+}
+
+*/
+
+/*
+Console.WriteLine("BOBOK GES");
+Thread.Sleep(5000);
+Console.WriteLine("BANGUN GES");
+
+await Task.Delay(5000);
+Console.WriteLine("BANGUN LAGI GES");
+
+async Task<List<int>> GetListAsync()
+{
+    await Task.Delay(2000);
+    return queryResultChain.SelectMany(group => group).ToList();
+}
+
+var resultAsync = await GetListAsync();
+foreach (var n in resultAsync)
+{
+    Console.Write(n + " ");
+}
+
+Console.WriteLine("");
+
+//var usernameAsync = await userService.GetUserNameAsync(67);
+//Console.WriteLine($"Username Async: {usernameAsync}");
+
+*/
+
+
+/*
+var swSync = Stopwatch.StartNew();
+documentService.GetDocumentSync();
+swSync.Stop();
+Console.WriteLine($"Time: {swSync.ElapsedMilliseconds}ms");
+
+
+async Task GetDocumentAsync ()
+{
+    var swAsync = Stopwatch.StartNew();
+    var result = await documentService.GetDocumentAsync();
+    swAsync.Stop();
+
+    Console.WriteLine($"Time: {swAsync.ElapsedMilliseconds}ms");
+    Console.WriteLine("Result: ");
+    foreach ( var document in result )
+    {
+        Console.WriteLine(document);
+    }
+}
+
+await GetDocumentAsync();
+*/
+
+UserManager userManager = new UserManager();
+EmailManager emailManager = new EmailManager();
+
+userManager.ValidateUser("email@domain.com");
+emailManager.SendWelcomeEmail("email@domain.com");
+
+RegularDiscount regularDiscount = new RegularDiscount();
+VIPDiscount vipDiscount = new VIPDiscount();
+
+int price = 10000;
+Console.WriteLine($"Base price: {price}");
+Console.WriteLine($"Regular Discount: {regularDiscount.Apply(10000)}");
+Console.WriteLine($"VIP Discount: {vipDiscount.Apply(10000)}");

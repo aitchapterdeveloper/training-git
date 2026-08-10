@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using GitTrainingDemo.Repositories;
 
 namespace GitTrainingDemo.Services
 {
@@ -27,6 +29,23 @@ namespace GitTrainingDemo.Services
             {
                 Console.WriteLine(city);
             }
+        }
+
+        public async Task<string> GetUserNameAsync(int id)
+        {
+            await Task.Delay(300);
+            return $"User-{id}";
+        }
+    }
+
+    public class UserManager
+    {
+        UserRepository userRepository = new UserRepository();
+        public void ValidateUser(string email)
+        {
+            Console.WriteLine($"Validate email: {email}");
+
+            userRepository.SaveEmailToDatabase(email);
         }
     }
 }
