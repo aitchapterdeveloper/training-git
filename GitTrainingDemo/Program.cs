@@ -11,6 +11,12 @@ var practiceService = new PracticeService();
 //practiceService.run();
 
 var cat = new Cat();
+var dog = new Dog();
+var circle = new Circle(7);
+//cat.Name = "Sone";
+//cat.Dance();
+//cat.Breathe();
+//dog.Breathe();
+//dog.Step();
 
-cat.Name = "Sone";
-cat.Dance();
+Console.WriteLine(circle.CalculateArea());

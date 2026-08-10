@@ -12,7 +12,6 @@ namespace GitTrainingDemo.Services
             {
                 Console.WriteLine("Nomor: " + i);
             }
-
         }
     }
 }

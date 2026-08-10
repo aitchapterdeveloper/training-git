@@ -1,11 +1,11 @@
 using System;
-public class Animal()
+public abstract class Animal()
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public string Description { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public int Age { get; set; } = 0;
+    public string Description { get; set; } = string.Empty;
 
-    public void Breathe()
+    public virtual void Breathe()
     {
         Console.WriteLine(Name +" hufb hub hoek");
     }
@@ -13,7 +13,7 @@ public class Animal()
 
 public class Cat : Animal
 {
-    public string Breed { get; set; }
+    public string Breed { get; set; } = string.Empty;
     public void Meow()
     {
         Console.WriteLine(Name + "  Meng");
@@ -21,6 +21,23 @@ public class Cat : Animal
 
     public void Dance()
     {
-        Console.WriteLine("Uiiaiuiiai");
+        Console.WriteLine("U iia iu iiai");
     }
-}  
+}
+
+public class Dog: Animal, Walk
+{
+    public override void Breathe()
+    {
+        Console.WriteLine(Name + "Ruff Ruff hrrrrrrrr");
+    }
+    public void Step()
+    {
+        Console.WriteLine("Busk busk");
+    }
+}
+
+public interface Walk
+{
+    void Step();
+}

@@ -1,0 +1,6 @@
+# .gitignore
+bin/
+obj/
+@.log
+appsetings.Development.json
+/.vs
