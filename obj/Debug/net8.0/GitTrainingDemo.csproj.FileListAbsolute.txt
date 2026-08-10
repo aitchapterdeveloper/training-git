@@ -1,0 +1,15 @@
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.AssemblyInfoInputs.cache
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.AssemblyInfo.cs
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.csproj.CoreCompileInputs.cache
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.sourcelink.json
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\bin\Debug\net8.0\GitTrainingDemo.exe
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\bin\Debug\net8.0\GitTrainingDemo.deps.json
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\bin\Debug\net8.0\GitTrainingDemo.runtimeconfig.json
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\bin\Debug\net8.0\GitTrainingDemo.dll
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\bin\Debug\net8.0\GitTrainingDemo.pdb
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.dll
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\refint\GitTrainingDemo.dll
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.pdb
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\GitTrainingDemo.genruntimeconfig.cache
+C:\Users\Adicipta\source\repos\training-git\GitTrainingDemo\obj\Debug\net8.0\ref\GitTrainingDemo.dll
