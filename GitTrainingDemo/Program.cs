@@ -586,36 +586,69 @@ var orderService = new OrderService();
 //    }
 //}
 
-Order order = new Order();
+//Order order = new Order();
 
-order.PlaceOrderPhone();
-order.PlaceOrderEmail();
+//order.PlaceOrderPhone();
+//order.PlaceOrderEmail();
 
-interface INotificationService
-{
-    void Send(string message);
-}
+//interface INotificationService
+//{
+//    void Send(string message);
+//}
 
-class EmailServiceSimple : INotificationService
-{
-    public void Send(string message) => Console.WriteLine($"Email : {message}");
-}
+//class EmailServiceSimple : INotificationService
+//{
+//    public void Send(string message) => Console.WriteLine($"Email : {message}");
+//}
 
-class PhoneServiceSimple : INotificationService
-{
-    public void Send(string message) => Console.WriteLine($"Phone : {message}");
-}
+//class PhoneServiceSimple : INotificationService
+//{
+//    public void Send(string message) => Console.WriteLine($"Phone : {message}");
+//}
 
-class Order
-{
-    public void PlaceOrderEmail()
-    {
-        EmailServiceSimple emailServiceSimple = new EmailServiceSimple();
-        emailServiceSimple.Send("adins@gmail.com");
-    }
-    public void PlaceOrderPhone()
-    {
-        PhoneServiceSimple phoneServiceSimple = new PhoneServiceSimple();
-        phoneServiceSimple.Send("087808780878");
-    }
-}
+//class Order
+//{
+//    public void PlaceOrderEmail()
+//    {
+//        EmailServiceSimple emailServiceSimple = new EmailServiceSimple();
+//        emailServiceSimple.Send("adins@gmail.com");
+//    }
+//    public void PlaceOrderPhone()
+//    {
+//        PhoneServiceSimple phoneServiceSimple = new PhoneServiceSimple();
+//        phoneServiceSimple.Send("087808780878");
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Latihan
+//Ubah ini jadi prinsip SOLID
+
+EmailNotificationSend emailNotificationSend = new EmailNotificationSend();
+PaymentValidator paymentValidator = new PaymentValidator();
+PaymentService paymentService = new PaymentService(paymentValidator, emailNotificationSend);
+
+IPaymentMethod cc = new CreditPayment();
+paymentService.ProcessPayment(cc, 1000, "adins@gmail.com");
+
+Console.WriteLine();
+
+IPaymentMethod ewallet = new EWalletPayment();
+paymentService.ProcessPayment(ewallet, 1000, "adins@gmail.com");

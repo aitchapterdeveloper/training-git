@@ -1,36 +1,91 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GitTrainingDemo.Services
 {
-    public class PaymentService
+    //Ubah ini jadi prinsip SOLID
+
+    public interface IPaymentMethod
     {
-        public void ProcessPayment(string method, double amount, string customerEmail)
+        double AdminFee(double amount);
+        void Pay(double total);
+    }
+
+    public interface IReceiptSender
+    {
+        public void SendReceipt(string email, double totalAmount);
+    }
+
+    public class EmailNotificationSend : IReceiptSender
+    {
+        public void SendReceipt(string email, double totalAmount)
+        {
+            Console.WriteLine($"[EMAIL] Receipt sent to {email}: Rp{totalAmount}");
+        }
+    }
+
+    public class CreditPayment : IPaymentMethod
+    {
+        public double AdminFee(double amount) => amount * 0.03;
+        public void Pay(double total) => Console.WriteLine($"[CC] Charging Rp{total} to credit card");
+    }
+
+    public class BankPayment : IPaymentMethod
+    {
+        public double AdminFee(double amount) => 5000;
+        public void Pay(double total) => Console.WriteLine($"[TF] Transferring Rp{total} via bank");
+    }
+
+    public class EWalletPayment : IPaymentMethod
+    {
+        public double AdminFee(double amount) => amount * 0.01;
+        public void Pay(double total) => Console.WriteLine($"[EW] Deducting Rp{total} from e-wallet");
+    }
+
+    public class TotalPayment
+    {
+        public double TotalPaymentProcess(double amount, double adminFee)
+        {
+            return amount + adminFee;
+        }
+    }
+
+    public class PaymentValidator
+    {
+        public bool IsValid(double amount)
         {
             if (amount <= 0)
             {
                 Console.WriteLine("Amount harus lebih dari 0!");
-                return;
+                return false;
             }
+            return true;
+        }
+    }
 
-            double adminFee = 0;
-            if (method == "CreditCard")
-                adminFee = amount * 0.03;
-            else if (method == "BankTransfer")
-                adminFee = 5000;
-            else if (method == "EWallet")
-                adminFee = amount * 0.01;
+    public class PaymentService
+    {
+        private readonly IReceiptSender _receiptSender;
+        private readonly PaymentValidator _validator;
 
-            double total = amount + adminFee;
+        public PaymentService(PaymentValidator validator, IReceiptSender receiptSender)
+        {
+            _validator = validator;
+            _receiptSender = receiptSender;
+        }
 
-            if (method == "CreditCard")
-                Console.WriteLine($"[CC] Charging Rp{total} to credit card");
-            else if (method == "BankTransfer")
-                Console.WriteLine($"[TF] Transferring Rp{total} via bank");
-            else if (method == "EWallet")
-                Console.WriteLine($"[EW] Deducting Rp{total} from e-wallet");
+        public void ProcessPayment(IPaymentMethod payment, double amount, string email)
+        {
+            if (!_validator.IsValid(amount)) return;
 
-            Console.WriteLine($"[EMAIL] Receipt sent to {customerEmail}: Rp{total}");
+            double total = payment.AdminFee(amount);
+            payment.Pay(total);
+
+            _receiptSender.SendReceipt(email, total);
         }
     }
 }
