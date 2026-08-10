@@ -29,11 +29,23 @@ var linqService = new LINQService();
 List<int> list = new List<int> { 3, 15, 7, 22, 9, 18, 56, 4, 11};
 
 //linqService.PrintNumberList(list);
-linqService.PrintNumberListWithLINQ(list);
 
 var listProcessed = linqService.ProcessListWithLINQ(list);
-foreach (var n in listProcessed)
-{
-    Console.Write(n + ", ");
-}
+//foreach (var n in listProcessed)
+//{
+//    Console.Write(n + ", ");
+//}
+//linqService.PrintNumberListWithLINQ(list);
 //linqService.PrintListAggregate(list);
+
+var asyncService = new AsyncService();
+
+//var result = await asyncService.GetDataAsync(listProcessed.Count);
+
+//Console.WriteLine(result);
+
+var syncTime = asyncService.stopwatchSync();
+var asyncTime =  await asyncService.stopwatchAsync();
+
+Console.WriteLine($"Synchronous task takes: {syncTime}ms");
+Console.WriteLine($"Asynchronous task takes: {asyncTime}ms");
