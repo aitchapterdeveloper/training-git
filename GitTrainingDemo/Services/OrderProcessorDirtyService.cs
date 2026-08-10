@@ -11,17 +11,30 @@ namespace GitTrainingDemo.Services
         {
             ValidatePrice(price);
             ValidateQuantity(quantity);
-            double total = price * quantity;
-            int legalAge = 17;
-            double taxRate = 0.21;
-            double discountRate = 0.1;
-            if (customerAge > legalAge)
-            {
-                total = total * taxRate + total;
-            }
-            total = total - (total * discountRate);
+            double total = CalculatePrice(price,customerAge);
             Console.WriteLine($"Order {orderId} disimpan dengan total {total}");
             Console.WriteLine($"Order {orderId} confirmed � email terkirim ke {email}");
+        }
+
+        private double CalculatePrice(double price, int customerAge)
+        {
+            int legalAge = 17;
+            double total = price;
+            if (customerAge > legalAge) { total = applyTax(price); }
+            total = ApplyDiscount(total);
+            return total;
+        }
+
+        private double applyTax(double amount)
+        {
+            double taxRate = 0.21;
+            return amount * (1 + taxRate);
+        }
+
+        private double ApplyDiscount(double amount)
+        {
+            double discountRate = 0.1;
+            return amount * (1 - discountRate);
         }
 
         void ValidatePrice(double price)

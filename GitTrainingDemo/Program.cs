@@ -151,12 +151,9 @@ var orderServicePigeon = new OrderService(pigeon);
 var orderServiceWa = new OrderService(wa);
 
 var notif = new EmailNotification();
-var paymentMethod = new BankTransfer();
+var paymentMethod = new CreditCard();
 var paymentService = new PaymentService(paymentMethod,notif); 
 paymentService.ProcessPayment(123,"Kenny");
-// orderServiceEmail._notif.send("Noice");
-// orderServicePigeon._notif.send("Noice");
-// orderServiceWa._notif.send("Noice");
 
 var orderProcess = new OrderProcessorDirtyService("Jamal", "Jamal@mail.com");
 orderProcess.Process(1,-12,0,17);
