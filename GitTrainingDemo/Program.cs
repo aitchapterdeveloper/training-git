@@ -53,11 +53,13 @@ var asyncService = new AsyncService();
 
 var rectangle = new Rectangle(4, 7);
 
-Console.WriteLine(rectangle.Area());
+//Console.WriteLine(rectangle.Area());
 
-cat.Walk();
+//cat.Walk();
 
 var sms = new MessageServices.SMSMessaging();
 
 sms.SendMessage("Juanda");
 
+var paymentService = new PaymentService();
+paymentService.ProcessPayment(PaymentMethod.BankTransfer, 10, "Hello@gmail.com");
