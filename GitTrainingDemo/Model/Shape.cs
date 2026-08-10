@@ -1,5 +1,6 @@
 using System;
-using GitTrainingDemo.Model;
+using GitTrainingDemo.Interfaces;
+
 public abstract class Shape
 {
     public string Color { get; set; }

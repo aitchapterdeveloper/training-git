@@ -1,4 +1,5 @@
 using System;
+using GitTrainingDemo.Interfaces;
 public abstract class Animal()
 {
     public string Name { get; set; } = string.Empty;
@@ -11,7 +12,7 @@ public abstract class Animal()
     }
 }
 
-public class Cat : Animal
+public class Cat : Animal,IFourLegged
 {
     public string Breed { get; set; } = string.Empty;
     public void Meow()
@@ -22,6 +23,10 @@ public class Cat : Animal
     public void Dance()
     {
         Console.WriteLine("U iia iu iiai");
+    }
+    public void Walk()
+    {
+        Console.WriteLine("claw paw claw");
     }
 }
 

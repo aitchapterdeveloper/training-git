@@ -55,3 +55,9 @@ var rectangle = new Rectangle(4, 7);
 
 Console.WriteLine(rectangle.Area());
 
+cat.Walk();
+
+var sms = new MessageServices.SMSMessaging();
+
+sms.SendMessage("Juanda");
+
