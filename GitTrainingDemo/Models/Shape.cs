@@ -1,4 +1,5 @@
 using System;
+using GitTrainingDemo.Interfaces;
 
 namespace GitTrainingDemo.Models
 {
@@ -22,15 +23,15 @@ namespace GitTrainingDemo.Models
             return Math.PI * Radius * Radius;
         }
     }
-    public class Rectangle : Shape
-    {
-        public double Width { get; set; }
-        public double Height { get; set; }
-        public override double CalculateArea()
-        {
-            return Width * Height;
-        }
-    }
+    //public class Rectangle : Shape
+    //{
+    //    public double Width { get; set; }
+    //    public double Height { get; set; }
+    //    public override double CalculateArea()
+    //    {
+    //        return Width * Height;
+    //    }
+    //}
 
     public class Triangle : Shape
     {
@@ -41,6 +42,19 @@ namespace GitTrainingDemo.Models
         {
             return (Base * Height) / 2;
         }
+    }
+
+    public class Rectangle : IShape
+    {
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Area() => Width * Height;
+    }
+
+    public class Square : IShape
+    {
+        public int Side { get; set; }
+        public int Area() => Side * Side;
     }
 }
 

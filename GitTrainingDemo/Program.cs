@@ -231,6 +231,7 @@ async Task GetDocumentAsync ()
 await GetDocumentAsync();
 */
 
+/*
 UserManager userManager = new UserManager();
 EmailManager emailManager = new EmailManager();
 
@@ -244,3 +245,46 @@ int price = 10000;
 Console.WriteLine($"Base price: {price}");
 Console.WriteLine($"Regular Discount: {regularDiscount.Apply(10000)}");
 Console.WriteLine($"VIP Discount: {vipDiscount.Apply(10000)}");
+
+Rectangle rectangle = new Rectangle { Height = 5, Width = 7 };
+Console.WriteLine($"Rectangle Area: {rectangle.Area()}");
+
+Square square = new Square { Side = 5 };
+Console.WriteLine($"Square Area: {square.Area()}");
+
+PaymentRegular payRegular = new PaymentRegular();
+payRegular.Pay(price);
+PaymentVIP payVip = new PaymentVIP();
+payVip.Pay(price);
+*/
+
+
+interface INotificationService
+{
+    void Send(string message);
+}
+
+class EmailNotificationService : INotificationService
+{
+    private readonly INotificationService _notificationService;
+
+    public EmailNotificationService (INotificationService notificationService)
+    {
+        _notificationService = notificationService;
+    }
+
+    public void Send(string message) => Console.WriteLine($"{message} | (Sent by Email)");
+}
+
+class SMSNotificationService : INotificationService
+{
+    private readonly INotificationService _notificationService;
+
+    public SMSNotificationService(INotificationService notificationService)
+    {
+        _notificationService = notificationService;
+    }
+
+    public void Send(string message) => Console.WriteLine($"{message} | (Sent by SMS)");
+}
+
