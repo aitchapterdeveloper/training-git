@@ -258,7 +258,7 @@ PaymentVIP payVip = new PaymentVIP();
 payVip.Pay(price);
 */
 
-
+/*
 interface INotificationService
 {
     void Send(string message);
@@ -287,4 +287,5 @@ class SMSNotificationService : INotificationService
 
     public void Send(string message) => Console.WriteLine($"{message} | (Sent by SMS)");
 }
+*/
 
