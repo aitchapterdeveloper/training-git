@@ -38,7 +38,7 @@ namespace GitTrainingDemo.Services
         }
         public void ForLoop()
         {
-            for(int i = 1; i <= 10; i++){
+            for (int i = 1; i <= 10; i++) {
                 Console.WriteLine("Nomor " + i);
                 i++;
             }
@@ -61,15 +61,15 @@ namespace GitTrainingDemo.Services
             matkul.Add("Analisis dan Visualisasi Data");
             matkul.Add("Pemrograman Web");
             matkul.Add("Business Intelligence");
-            matkul.Add("Basis Data");               
-                Console.WriteLine(matkul[0]);
-                Console.WriteLine(matkul[1]);
-                Console.WriteLine(matkul[2]);
-                Console.WriteLine(matkul[3]);
-                Console.WriteLine(matkul.Count); 
+            matkul.Add("Basis Data");
+            Console.WriteLine(matkul[0]);
+            Console.WriteLine(matkul[1]);
+            Console.WriteLine(matkul[2]);
+            Console.WriteLine(matkul[3]);
+            Console.WriteLine(matkul.Count);
             matkul.Remove("Pemrograman Web");
-                Console.WriteLine(matkul.Count);
-                Console.WriteLine(matkul.Contains("Pemrograman Web"));
+            Console.WriteLine(matkul.Count);
+            Console.WriteLine(matkul.Contains("Pemrograman Web"));
             foreach (string f in matkul)
             {
                 Console.WriteLine(f);
@@ -83,9 +83,9 @@ namespace GitTrainingDemo.Services
             barang.Add("MBL1", "Mobil Pajero");
             barang.Add("MTR2", "Motor NMax");
             barang.Add("SPL3", "Sepeda Listrik");
-            
+
             Console.WriteLine(barang["SPL3"]);
-            
+
             if (barang.ContainsKey("MBL5"))
             {
                 Console.WriteLine("Barang Ditemukan");
@@ -115,8 +115,10 @@ namespace GitTrainingDemo.Services
             // setA sekarang: {"B", "C"}
         }
 
-        
+
     }
+    //OOP
+
     public class Product
     {
         public string Name { get; set; }
@@ -128,7 +130,7 @@ namespace GitTrainingDemo.Services
             Price = price;
         }
     }
-
+    //Encapsulation (Bungkus Data)
     public class BankAccount
     {
         private double _balance;
@@ -141,5 +143,107 @@ namespace GitTrainingDemo.Services
             }
         }
     }
+    //Inheritance (Pewarisan)
+    public class Cat : Animal // Cat mewarisi Animal
+    {
+        public string Purr { get; set; } = string.Empty;
+        public void Scratch()
+        {
+            Console.WriteLine(Name + " says: Miaw!");
+        }
+    }
+
+    public class Animal
+    {
+        public string Name { get; set; } = string.Empty;
+
+        public void Breathe()
+        {
+            Console.WriteLine(Name + " is breathing.");
+        }
+    }
+    //Polymorphism Overloading
+    public class Calculator
+    {
+        public int Add(int a, int b)
+        {
+            return a + b;
+        }
+        public double Add(double a, double b)
+        {
+            return a + b;
+        }
+        public int Add(int a, int b, int c)
+        {
+            return a + b + c;
+        }
+    }
+
+    public class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        // Constructor 1: hanya nama
+        public Person(string name)
+        {
+            Name = name;
+            Age = 0;
+        }
+        // Constructor 2: nama + umur
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+    }
+        Person p1 = new Person("Adi");
+        Person p2 = new Person("Budi", 25);
+
+    //Polymorphism Override
+    public class Cow : Animals
+     {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Mooooo");
+        }
+     }
+    public class Goat : Animals
+     {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Ankara Messi");
+        }
+     }
+    public class Animals
+    {
+        public virtual void MakeSound()
+        {
+            Console.WriteLine("Some generic sound");
+        }
+     }
+
+    //Abstraction
+    public abstract class Shape
+    {
+        public string Color { get; set; } = string.Empty;
+        // Method abstrak — WAJIB diimplementasikan child
+        public abstract double CalculateArea();
+        // Method konkret — bisa langsung digunakan
+        public void DisplayColor()
+        {
+            Console.WriteLine("Color: " + Color);
+        }
+    }
+
+    public class Triangle : Shape
+    {
+        public double alas { get; set; }
+        public double tinggi { get; set; }
+        public override double CalculateArea()
+        {
+            return 0.5 * alas * tinggi;
+        }
+    }
 
 }
+

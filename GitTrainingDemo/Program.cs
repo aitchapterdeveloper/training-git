@@ -22,6 +22,40 @@ var orderService = new OrderService();
 //Console.WriteLine(s1.Name); // "Minyak"
 //Console.WriteLine(s2.Price); // 24000
 
-BankAccount acc = new BankAccount();
-acc.Balance = -99909; // tidak ada validasi!
-Console.WriteLine(acc.Balance);
+//BankAccount acc = new BankAccount();
+//acc.Balance = -99909; // tidak ada validasi!
+//Console.WriteLine(acc.Balance);
+
+//Cat c = new Cat();
+//c.Name = "Lex"; // dari Animal
+//c.Scratch(); // milik Cat
+//c.Breathe(); // diwarisi dari Animal
+
+//Calculator calc = new Calculator();
+
+//Console.WriteLine(calc.Add(1, 2));
+//Console.WriteLine(calc.Add(1.5, 2.5));
+//Console.WriteLine(calc.Add(1, 2, 3));
+
+// List of Animal tapi berisi berbagai jenis
+
+//static void main(string[] args)
+//{
+//    List<Animals> animals = new List<Animals>
+//    {
+//        new Cow(),
+//        new Goat(),
+//        new Animals()
+//    };
+//    foreach (Animals a in animals)
+//    {
+//        a.MakeSound();
+//    }
+//}
+
+Triangle tria = new Triangle { Color = "Blue", alas = 5, tinggi = 4 };
+tria.DisplayColor();
+Console.WriteLine("Triangle Area: " + tria.CalculateArea());
+
+
+
