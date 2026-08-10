@@ -11,19 +11,20 @@ namespace GitTrainingDemo.Services
 
         public void ProcessPayment(double amount, string customerEmail)
         {
-            ValidateAmount(amount);
+            if(!ValidateAmount(amount)) return;
             double total = _paymentMethod.CalculateTotal(amount);
             _paymentMethod.DoPayment(total);
             _notif.Send(customerEmail, total);
         }
 
-        private void ValidateAmount(double amount)
+        private bool ValidateAmount(double amount)
         {
-            if (amount <= 0)
+            bool isValid = amount >0;
+            if (!isValid)
             {
                 Console.WriteLine("Amount harus lebih dari 0!");
-                return;
             }
+            return isValid;
         }
     }
 }

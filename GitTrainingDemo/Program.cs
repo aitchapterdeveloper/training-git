@@ -153,7 +153,7 @@ var orderServiceWa = new OrderService(wa);
 var notif = new EmailNotification();
 var paymentMethod = new BankTransfer();
 var paymentService = new PaymentService(paymentMethod,notif); 
-paymentService.ProcessPayment(6767676767,"Kenny");
+paymentService.ProcessPayment(123,"Kenny");
 // orderServiceEmail._notif.send("Noice");
 // orderServicePigeon._notif.send("Noice");
 // orderServiceWa._notif.send("Noice");
