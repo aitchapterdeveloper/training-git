@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace GitTrainingDemo.Services
 {
@@ -6,30 +7,64 @@ namespace GitTrainingDemo.Services
     {
         public string Name;
         public string Email;
-
-        public void Process(int orderId, double price, int qty, int customerAge)
+        private int BatasUmurDiskon = 17;
+        private double Diskon = 0.21; //21%
+        private double Pajak = 0.1; //10%
+        public async Task Process(int orderId, double price, int qty, int customerAge)
         {
             // Validasi
+            try
+            {
+                ValidateInput(price, qty);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            var total = CalculateTotalPrice(price, qty, customerAge);
+            // Simpan
+            var save = Simpan(orderId, total);
+
+            // Kirim notifikasi
+            var sendNotification = SendNotification(orderId, "yoruem@gmail.com");
+
+            // Backup — tidak berhubungan dengan proses order
+            var backup = Backup(orderId);
+
+            await Task.WhenAll(save, sendNotification, backup);
+        }
+
+        private void ValidateInput(double price, int qty)
+        {
             if (price <= 0) throw new InvalidOperationException("Harga tidak valid");
             if (qty <= 0) throw new InvalidOperationException("Qty tidak valid");
+        }
 
+        private double CalculateTotalPrice(double price, int qty, int customerAge)
+        {
             // Kalkulasi total
             double total = price * qty;
 
-            // Magic number — diskon dan pajak tanpa nama jelas
-            if (customerAge > 17)
+            if (customerAge > BatasUmurDiskon)
             {
-                total = total * 0.21 + total;
+                total = total * Diskon + total;
             }
-            total = total - (total * 0.1); // diskon 10%, duplikasi logika diskon
+            return total - (total * Pajak); // diskon 10%, duplikasi logika diskon
+        }
 
-            // Simpan
+        private async Task Simpan(int orderId, double total)
+        {
             Console.WriteLine($"Order {orderId} disimpan dengan total {total}");
+        }
 
-            // Kirim notifikasi
-            Console.WriteLine($"Order {orderId} confirmed — email terkirim ke {Email}");
+        private async Task SendNotification(int orderId, string email)
+        {
+            Console.WriteLine($"Order {orderId} confirmed — email terkirim ke {email}");
+        }
 
-            // Backup — tidak berhubungan dengan proses order
+        private async Task Backup(int orderId)
+        {
             Console.WriteLine("Backup database dijalankan...");
         }
     }
