@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;   
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using GitTrainingDemo.Services;
 using System.Linq;
@@ -377,64 +377,113 @@ var orderService = new OrderService();
 //    public void Working();
 //}
 
-//var Email = new SMSServiceSimple();
-//Email.Send("Bail@email.com");
+var Email = new SMSServiceSimple();
+Email.Send("Bail@email.com");
 
-//interface iNotificationService
+interface iNotificationService
+{
+    void Send(string message);
+}
+
+class EmailServiceSimple : iNotificationService
+{
+    public void Send(string message) => Console.WriteLine("Email: " + message);
+}
+
+class SMSServiceSimple : iNotificationService
+{
+    public void Send(string message) => Console.WriteLine("SMS: " + message);
+}
+
+class OrderService
+{
+    private EmailServiceSimple _email = new EmailServiceSimple();
+
+    public void PlaceOrder()
+    {
+        Console.WriteLine("Process Order...");
+        _email.Send("Order Confirmed");
+
+    }
+}
+
+//interface PaymentMethod
 //{
-//    void Send(string message);
+//    double GetAdminFee(double amount);
+//    void ChargePrint(double total);
+//}
+//class CreditCardPayment : PaymentMethod
+//{
+//    public double AdminFee(double amount) => amount * 0.03;
+//    public void ChargePrint(double total) => $"[CC] Charging Rp{total} to credit card";
+//}
+//class BankPayment : PaymentMethod
+//{
+//    public double AdminFee(double amount) => 5000;
+//    public void ChargePrint(double total) => $"[TF] Transferring Rp{total} via bank";
+//}
+//class EWalletPayment : PaymentMethod
+//{
+//    public double AdminFee(double amount) => amount * 0.01;
+//    public void ChargePrint(double total) => $"[EW] Deducting Rp{total} from e-wallet";
 //}
 
-//class EmailServiceSimple : iNotificationService
-//{
-//    public void Send(string message) => Console.WriteLine("Email: "+message);
-//}
-
-//class SMSServiceSimple : iNotificationService
-//{
-//    public void Send(string message) => Console.WriteLine("SMS: " + message);
-//}
-
-//class OrderService
-//{
-//    private EmailServiceSimple _email = new EmailServiceSimple();
-
-//    public void PlaceOrder()
-//    {
-//        Console.WriteLine("Process Order...");
-//        _email.Send("Order Confirmed");
-
-//    }
-//}
-
+interface PaymentMethod
+{
+    double GetAdminFee(double amount);
+    void ChargePrint(double total);
+}
+class CreditCardPayment : PaymentMethod
+{
+    public double GetAdminFee(double amount) => amount * 0.03;
+    public void ChargePrint(double total) => $"[CC] Charging Rp{total} to credit card";
+}
+class BankPayment : PaymentMethod
+{
+    public double GetAdminFee(double amount) => 5000;
+    public void ChargePrint(double total) => $"[TF] Transferring Rp{total} via bank";
+}
+class EWalletPayment : PaymentMethod
+{
+    public double GetAdminFee(double amount) => amount * 0.01;
+    public void ChargePrint(double total) => $"[EW] Deducting Rp{total} from e-wallet";
+}
 
 
+interface IReceiptSender
+{
+    void SendReceipt(string to, double total);
+}
+class EmailReceipt : IReceiptSender
+{
+    public void SendReceipt(string to, double total)
+        => Console.WriteLine($"[EMAIL] Receipt sent to {customerEmail}: Rp{total}");
+}
+class PaymentProcessor
+{
+    private readonly IReceiptSender _receiptSender;
+    private readonly IReceiptSender _paymentMethod;
 
+    public PaymentProcessor(IReceiptSender receiptSender)
+    {
+        _receiptSender = receiptSender;
+    }
+    public void Process(IPaymentMethod payment, double amount, string email)
+    {
+        if (amount <= 0) { Console.WriteLine("Amount harus > 0"); return; }
+        if (payment = "EWallet")
+        {
+            total = amount + _paymentMethod.GetAdminFeeEWallet(amount)
+            }
+        else if (payment = "Credit Card")
+        {
 
+        }
+        payment.Pay(total);
+        _receiptSender.SendReceipt(email, total);
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
