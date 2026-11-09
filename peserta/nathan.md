@@ -1,2 +1,2 @@
 Nathanael Esmond Hartono
-Hobi: -
+Hobi: bersepeda
