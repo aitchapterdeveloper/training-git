@@ -1,2 +1,2 @@
 Hardy Febryan
-Hobi : - Membaca
+Hobi: membaca dan bersepeda
