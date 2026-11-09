@@ -1,3 +1,4 @@
 Wisnu Rasyidin A
 
-Hobi : Membaca
+Hobi : Membaca dan Bersepeda
+
