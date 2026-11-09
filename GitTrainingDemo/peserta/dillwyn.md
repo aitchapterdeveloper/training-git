@@ -1,2 +1,2 @@
 Ignatius Dillwyn
-Hobi: -
+Hobi: membaca
