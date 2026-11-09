@@ -1,2 +1,2 @@
 Ammar Naufal
-Hobi: membaca
+Hobi: membaca dan bersepeda
