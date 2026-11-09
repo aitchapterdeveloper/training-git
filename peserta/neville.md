@@ -1,2 +1,2 @@
 Neville Venerdi
-Hobi: -
+Hobi: membaca
