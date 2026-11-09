@@ -1,4 +1,2 @@
 Bagus Hardika
-
-Hobi: membaca
-
+Hobi: membaca dan bersepeda
