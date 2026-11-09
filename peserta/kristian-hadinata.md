@@ -1,2 +1,2 @@
 kristian hadinata
-hobi -
+hobi - bersepeda
