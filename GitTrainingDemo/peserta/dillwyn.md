@@ -1,2 +1,2 @@
 Ignatius Dillwyn
-Hobi: membaca
+Hobi: bersepeda
