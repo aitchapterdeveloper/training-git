@@ -1,2 +1,2 @@
 Nama lengkap: Christian Johanes
-Hobi: -
+Hobi: Membaca
