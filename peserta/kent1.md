@@ -1,2 +1,2 @@
 kent fadly royhan
-hobi = ngoders
+hobi = membaca
