@@ -1,3 +1,3 @@
 Kevin Hermanto
 
-Hobi: membaca
+Hobi: membaca dan bersepeda
