@@ -1,3 +1,3 @@
 Wisnu Rasyidin A
 
-Hobi : -
+Hobi : Bersepeda
