@@ -1,1 +1,0 @@
-Nuwansyah Billah Amantana
