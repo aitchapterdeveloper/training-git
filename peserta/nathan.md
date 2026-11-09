@@ -1,2 +1,2 @@
 Nathanael Esmond Hartono
-Hobi: membaca
+Hobi: membaca dan bersepeda
