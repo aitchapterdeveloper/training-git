@@ -1,1 +1,3 @@
 Wisnu Rasyidin A
+
+Hobi : -
