@@ -1,2 +1,2 @@
 Nama : Nuwansyah Billah Amantana
-Hobi : bersepeda
+Hobi : membaca
