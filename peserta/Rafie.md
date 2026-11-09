@@ -1,2 +1,2 @@
 Rafie Rojagat Bachri
-Hobi: Tidur
+Hobi: Tidur dan Bersepeda
