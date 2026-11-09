@@ -1,1 +1,2 @@
-Nuwansyah Billah Amantana
+Nama : Nuwansyah Billah Amantana
+Hobi : Playing Game
