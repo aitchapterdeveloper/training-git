@@ -3,17 +3,138 @@ using System.Diagnostics;
 using System.Threading.Tasks;   
 using System.Collections.Generic;
 using GitTrainingDemo.Services;
+using GitTrainingDemo.Object;
 using System.Linq;
 using System.Globalization;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
-var userService = new UserService();
+/*var userService = new UserService();
 //Console.WriteLine(userService.Login("admin", "24"));
 
 var orderService = new OrderService();
+
+
+Console.WriteLine(OrderService.GetKategoriTiket(8));
+Console.WriteLine(OrderService.GetKategoriTiket(17));
+Console.WriteLine(OrderService.GetKategoriTiket(30));
+Console.WriteLine(OrderService.GetKategoriTiket(65));
+
+Console.WriteLine(OrderService.GetStatusFilm17(8));
+Console.WriteLine(OrderService.GetStatusFilm17(17));
+Console.WriteLine(OrderService.GetStatusFilm17(30));
+Console.WriteLine(OrderService.GetStatusFilm17(65));
 //Console.WriteLine(orderService.CalculateTotal(100000));
+
+Dictionary<string, int> hargaBarang = new Dictionary<string, int>();
+
+hargaBarang.Add("Air Mineral", 3500);
+hargaBarang.Add("Roti", 12000);
+hargaBarang.Add("Kopi", 8000);
+
+List<string> keranjang = new List<string>();
+keranjang.Add("Roti");
+keranjang.Add("Kopi");
+keranjang.Add("Roti");
+keranjang.Add("Air Mineral");
+
+int total = 0;
+
+foreach(string k in keranjang)
+{
+    total = total + hargaBarang[k];
+}
+
+Console.WriteLine("Total Belanja: Rp" + total);
+
+keranjang.Add("Teh");
+int total2 = 0;
+foreach (string k in keranjang)
+{
+    if (hargaBarang.ContainsKey(k))
+    {
+        total2 = total2 + hargaBarang[k];
+    } else
+    {
+        Console.WriteLine(k + " Tidak Dijual");
+    }
+}
+
+Console.WriteLine("Total Belanja Setelah Teh: Rp" + total);
+
+Student student = new Student("Budi", 12);
+
+GitTrainingDemo.Object.Product product = new GitTrainingDemo.Object.Product("Pensil", 3000, 10);
+Console.WriteLine("Product Stock 1: " + product.Stock);
+
+product.Stock = -5;
+Console.WriteLine("Product Stock 2: " + product.Stock);
+
+List<int> angka = new List<int> { 1, 2, 3, };
+Console.WriteLine(angka.Sum());
+
+List<Kendaraan> listKendaraan = new List<Kendaraan>();
+Kendaraan kendaraan = new Kendaraan();
+kendaraan.PlatNomor = "DK432P";
+Mobil mobil = new Mobil();
+mobil.PlatNomor = "B232DK";
+Motor motor = new Motor();
+motor.PlatNomor = "D3245L";
+
+listKendaraan.Add(kendaraan);
+listKendaraan.Add(motor);
+listKendaraan.Add(mobil);
+
+foreach(Kendaraan k in listKendaraan)
+{
+    Console.WriteLine(k.PlatNomor + ": " + k.HitungBiayaParkir(3));
+}
+
+List<Ticket> listTickets = new List<Ticket>();
+
+TiketReguler tiket1 = new TiketReguler("Jurassic");
+TiketReguler tiket2 = new TiketReguler("Park");
+TiketVip tiket3 = new TiketVip("Avengers");
+
+listTickets.Add(tiket1);
+listTickets.Add(tiket2);
+listTickets.Add(tiket3);
+
+int totalHargaTiket = 0;
+foreach(Ticket t in listTickets)
+{
+    Console.WriteLine(t.NamaFilm + " :" + t.HitungHarga());
+    totalHargaTiket = totalHargaTiket + t.HitungHarga();
+}
+
+int hargaSetelahDiskon = 0;
+Console.WriteLine("Total Harga Tiket: " + totalHargaTiket);
+if (totalHargaTiket > 150000)
+{
+    hargaSetelahDiskon = totalHargaTiket * 90 / 100;
+}
+Console.WriteLine("Total Harga Tiket Setelah Diskon: " + hargaSetelahDiskon);
+
+var day3Services = new Day3Services();
+*//*day3Services.linq(new List<int>(){ 1, 2, 3, 4, 5, 6, 7, 50,51,53 });
+*/
+
+/*day3Services.tesAggregate(new List<int>() { 2, 6, 4 });
+*//*
+List<int> prices = new List<int> { 25000, 120000, 8000, 56000, 210000, 15000, 99000 };
+day3Services.linq(prices);
+
+await day3Services.GetUserEndpoint(2);
+string infoFilm = await day3Services.GetInfoFilmAsync(7);
+Console.WriteLine("Info Film: " + infoFilm);
+
+Console.WriteLine("");
+var orderServiceWA = new OrderService2(new WhatsAppNotification());
+orderServiceWA.sendMessage("Ini message");
+
+var orderServiceEmail = new OrderService2(new EmailNotification());
+orderServiceEmail.sendMessage("Ini message");*/
 
 //Console.WriteLine(orderService.GetGreeting("Vincent", "Jakarta"));
 //orderService.GetGreetingReturn("Vincent", "Bandung");
@@ -407,8 +528,165 @@ var orderService = new OrderService();
 //    }
 //}
 
+DiscountService discountService = new DiscountService(new DiscountMemberRegular());
+discountService.calculateDiscount(20000);
+
+var order = new TicketOrderManager
+{
+    CustomerName = "Budi Santoso",
+    CustomerEmail = "budi@example.com",
+    CustomerAge = 25,
+    MemberType = "VIP"
+};
+order.Movies.Add("Avengers: Legacy");
+order.Prices.Add(50000);
+order.Qtys.Add(2);
+
+order.Movies.Add("Laut Bercerita");
+order.Prices.Add(45000);
+order.Qtys.Add(1);
+
+order.ProsesOrder();
 
 
+/*using System;
+using System.Collections.Generic;*/
+
+
+// TODO (peserta): tulis di sini semua code smell yang kamu temukan
+//Validasi
+// Duplicate code di ProsesOrder dan HitungDiskonUntukPreview
+// Long Method -> ProsesOrder()
+// Magic Number -> 0.1, 0.2, 0.15, 17, 0.11, 0.15
+// Naming Buruk => double x = 0; double d = 0; double total = x - d; bool flag = false; 
+class TicketOrderManager
+    {
+        public string CustomerName;
+        public string CustomerEmail;
+        public int CustomerAge;
+        public string MemberType; // "Regular", "VIP", "Student"
+        public List<string> Movies = new List<string>();
+        public List<double> Prices = new List<double>();
+        public List<int> Qtys = new List<int>();
+
+        public void validate()
+        {
+            if (string.IsNullOrEmpty(CustomerName)) throw new Exception("Nama wajib diisi");
+            if (string.IsNullOrEmpty(CustomerEmail)) throw new Exception("Email wajib diisi");
+            if (Movies.Count == 0) throw new Exception("Minimal 1 tiket");
+        }
+
+        public double calculateSubtotalBeforeDisc()
+        {
+            double totalPriceBeforeDisc = 0;
+            for (int i = 0; i < Movies.Count; i++)
+            {
+                totalPriceBeforeDisc += Prices[i] * Qtys[i];
+            }
+            return totalPriceBeforeDisc;
+        }
+
+
+        public double calculateDiscount(double totalPriceBeforeDisc)
+        {
+            double TARIF_DISKON_REGULAR = 0.1;
+            double TARIF_DISKON_VIP = 0.2;
+            double TARIF_DISKON_STUDENT = 0.15;
+
+            double diskon = 0;
+            if (MemberType == "Regular")
+            {
+                diskon = totalPriceBeforeDisc * TARIF_DISKON_REGULAR;
+            }
+            else if (MemberType == "VIP")
+            {
+                diskon = totalPriceBeforeDisc * TARIF_DISKON_VIP;
+            }
+            else if (MemberType == "Student")
+            {
+                diskon = totalPriceBeforeDisc * TARIF_DISKON_STUDENT;
+            }
+            return diskon;
+        }
+
+        public void calculateTax(double totalPriceAfterDisc)
+        {
+            int MIN_AGE = 17;
+            double TAX_RATE = 0.11;
+            if (CustomerAge > MIN_AGE)
+            {
+                totalPriceAfterDisc = totalPriceAfterDisc + (totalPriceAfterDisc * TAX_RATE);
+            }
+        }
+
+        public void saveToDB(double totalPriceAfterDisc)
+        {
+            Console.WriteLine("Menyimpan order untuk " + CustomerName + " total: " + totalPriceAfterDisc);
+        }
+
+        public void sendEmail(double totalPriceAfterDisc)
+        {
+            Console.WriteLine("Mengirim email ke " + CustomerEmail + ": Order Anda sebesar " + totalPriceAfterDisc + " telah dikonfirmasi.");
+        }
+
+        public void printLogAudit()
+        {
+            Console.WriteLine("[AUDIT] " + DateTime.Now + " - Order dibuat untuk " + CustomerName);
+
+            // generate laporan harian
+            Console.WriteLine("Laporan: " + Movies.Count + " tiket terjual hari ini.");
+        }
+
+        public void ProsesOrder()
+        {
+            // validasi
+            validate();
+
+            // hitung subtotal
+            double totalPriceBeforeDisc = calculateSubtotalBeforeDisc();
+
+            // hitung diskon member
+            double diskon = calculateDiscount(totalPriceBeforeDisc);
+            double totalPriceAfterDisc = totalPriceBeforeDisc - diskon;
+
+            // pajak untuk pelanggan dewasa
+            calculateTax(totalPriceAfterDisc);
+
+            // simpan ke "database" (simulasi)
+            saveToDB(totalPriceAfterDisc);
+
+            // kirim email
+            sendEmail(totalPriceAfterDisc);
+
+            // log audit
+            printLogAudit();
+        }
+
+        // method terpisah untuk preview diskon di halaman keranjang,
+        // logikanya copy-paste dari ProsesOrder
+        public double HitungDiskonUntukPreview(double subtotal, string memberType)
+        {
+            double disc = 0;
+            /*if (memberType == "Regular") disc = subtotal * 0.1;
+            else if (memberType == "VIP") disc = subtotal * 0.2;
+            else if (memberType == "Student") disc = subtotal * 0.15;*/
+
+            disc = calculateDiscount(subtotal);
+
+            return disc;
+        }
+
+        // cek apakah order boleh diproses lebih lanjut ke tahap pembayaran
+        public bool CekStatus()
+        {
+            bool isQualified = false;
+            if (Movies.Count > 0 && !string.IsNullOrEmpty(CustomerEmail))
+            {
+                isQualified = true;
+            }
+            return isQualified;
+        }
+    }
 
 
 

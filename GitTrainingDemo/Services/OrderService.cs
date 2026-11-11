@@ -2,11 +2,24 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography.X509Certificates;
+/*using GitTrainingDemo.Services;
+*/using System.Security.Cryptography.X509Certificates;
 namespace GitTrainingDemo.Services
 {
     public class OrderService
     {
+        public static string GetKategoriTiket(int umur)
+        {
+            if (umur < 12) return "Anak";
+            else if (umur >= 60) return "Lansia";
+            else return "Dewasa";
+        }
+
+        public static string GetStatusFilm17(int umur)
+        {
+            return (umur > 17) ? "Boleh menonton film 17+" : "Belum boleh";
+        }
+
         //public decimal CalculateTotal(decimal price)
         //{ 
         //    decimal afterdiscount = price * 0.9m; // diskon 10%
@@ -108,10 +121,10 @@ namespace GitTrainingDemo.Services
 
     public class DetailOrder : OrderService
     {
-        
+
     }
-    
-    public class Animal()
+
+    public class Animal
     {
         public string? Name { get; set; }
         public int Age { get; set; }
@@ -181,7 +194,7 @@ namespace GitTrainingDemo.Services
         }
     }
 
-    public class MakeAnimalSound()
+    public class MakeAnimalSound
     {
         public void MakeSound()
         {
@@ -193,7 +206,7 @@ namespace GitTrainingDemo.Services
             foreach (Animal a in animals)
             {
                 a.MakeSound();
-                
+
             }
         }
     }
@@ -240,8 +253,12 @@ namespace GitTrainingDemo.Services
         {
             return 0.5 * baseLength * height;
         }
+
+        
     }
 
+
+    
 
 
 }

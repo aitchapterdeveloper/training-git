@@ -4,8 +4,14 @@ namespace GitTrainingDemo.Services
 {
     public class UserService
     {
+        public string GetGreeting(string name)
+        {
+            return "Halo, " + name + "!";
+        }
+
         public string Login(string user, string pass)
         {
+            string message = GetGreeting("Adi");
             if (user == "admin" && pass == "24240942385") //change admin default password to 2424
             {
                 return "Login Success !!!";
